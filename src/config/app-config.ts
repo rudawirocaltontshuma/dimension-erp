@@ -3,12 +3,13 @@ import packageJson from "../../package.json";
 const currentYear = new Date().getFullYear();
 
 export const APP_CONFIG = {
-  name: "Studio Admin",
+  name: "NEXORA ERP",
+  subtitle: "Enterprise Resource Planning Platform",
   version: packageJson.version,
-  copyright: `© ${currentYear}, Studio Admin.`,
+  copyright: `© ${currentYear}, NEXORA ERP demonstration.`,
   meta: {
-    title: "Studio Admin - Modern Next.js Dashboard Starter Template",
+    title: "NEXORA ERP — Enterprise Resource Planning Platform",
     description:
-      "Studio Admin is a modern, open-source dashboard starter template built with Next.js 16, Tailwind CSS v4, and shadcn/ui. Perfect for SaaS apps, admin panels, and internal tools—fully customizable and production-ready.",
+      "NEXORA ERP is a frontend-only enterprise resource planning platform demonstration built with Next.js, TypeScript, Tailwind CSS and shadcn/ui. It uses fictional mock data for portfolio purposes.",
   },
 };

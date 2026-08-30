@@ -282,3 +282,31 @@ html {
     -webkit-print-color-adjust: exact;
   }
 }
+
+/* NEXORA ERP print styling: hide application chrome and print documents on a clean page. */
+@media print {
+  [data-slot="sidebar-container"],
+  [data-slot="sidebar"],
+  header,
+  nav,
+  [data-slot="sonner-toaster"] {
+    display: none !important;
+  }
+
+  main {
+    padding: 0 !important;
+  }
+
+  body {
+    background: white !important;
+  }
+
+  [data-slot="card"] {
+    box-shadow: none !important;
+    break-inside: avoid;
+  }
+
+  tr {
+    break-inside: avoid;
+  }
+}
