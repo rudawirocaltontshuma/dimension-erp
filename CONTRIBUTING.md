@@ -1,71 +1,63 @@
-# Contributing to Studio Admin
+# Contributing to Enterprise ERP
 
-Thanks for showing interest in improving **Studio Admin** (repo: `next-shadcn-admin-dashboard`).  
-This guide will help you set up your environment and understand how to contribute.
+Thanks for your interest in improving **Enterprise ERP**. This guide covers how to set up your environment and
+where to make changes.
 
 ---
 
 ## Overview
 
-This project is built with **Next.js 16**, **TypeScript**, **Tailwind CSS v4**, and **Shadcn UI**.  
-The goal is to keep the codebase modular, scalable, and easy to extend.
+This project is built with **Next.js 16**, **TypeScript**, **Tailwind CSS v4**, and **shadcn/ui**. It's a
+frontend-only Enterprise Resource Planning application — no backend, database, or authentication provider — so the
+focus for contributions is UI, UX, component architecture, and mock data quality.
 
 ---
 
 ## Project Layout
 
-We use a **colocation-based file system**. Each feature keeps its own pages, components, and logic.
+The application lives under `src/app/(erp)/`, with one directory per route and shared UI split into a reusable
+ERP component kit.
 
 ```
 src
-├── app               # Next.js routes (App Router)
-│   ├── (auth)        # Auth layouts & screens
-│   ├── (main)        # Main dashboard routes
-│   │   └── (dashboard)
-│   │       ├── crm
-│   │       ├── finance
-│   │       ├── default
-│   │       └── ...
-│   └── layout.tsx
-├── components        # Shared UI components
-├── hooks             # Reusable hooks
-├── lib               # Config & utilities
-├── styles            # Tailwind / theme setup
-└── types             # TypeScript definitions
+├── app
+│   └── (erp)               # The ERP application shell and every route
+│       ├── _components/     # Sidebar, header, command palette, notifications, company switcher
+│       ├── dashboard/       # Overview
+│       ├── orders/ customers/ products/ …
+│       ├── reports/         # Report centre and statement views
+│       └── settings/        # Administration section
+├── components
+│   ├── erp/                 # Reusable ERP kit (data table, KPI card, charts, timelines, etc.)
+│   └── ui/                  # shadcn/ui primitives
+├── data/erp/                 # Deterministic mock data generators and datasets
+├── lib/erp/                  # Currency/date formatting, status tones, search index
+├── navigation/                # Sidebar navigation and command palette definitions
+└── types/erp.ts               # Domain types for every entity
 ```
 
-If you’d like a more detailed example of this setup, check out the [Next Colocation Template](https://github.com/arhamkhnz/next-colocation-template), where the full structure is explained with examples.
+See [README.md](./README.md) for the full architecture and module list.
 
 ---
 
 ## Getting Started
 
-### Fork and Clone the Repository
-
-1. Fork the Repository
-   
-   Click [here](https://github.com/arhamkhnz/next-shadcn-admin-dashboard/fork) to fork the repository.
-
-2. Clone the Repository  
+1. **Fork the repository**, then clone your fork:
    ```bash
-   git clone https://github.com/YOUR_USERNAME/next-shadcn-admin-dashboard.git
-   ```
-   
-3. Navigate into the Project  
-   ```bash
-   cd next-shadcn-admin-dashboard
+   git clone https://github.com/YOUR_USERNAME/enterprise_erp.git
+   cd enterprise_erp
    ```
 
-4. **Install dependencies**
+2. **Install dependencies**
    ```bash
    npm install
    ```
 
-5. **Run the dev server**
+3. **Run the dev server**
    ```bash
    npm run dev
    ```
-   App will be available at [http://localhost:3000](http://localhost:3000).
+   The app is available at [http://localhost:3000](http://localhost:3000).
 
 ---
 
@@ -76,52 +68,47 @@ If you’d like a more detailed example of this setup, check out the [Next Coloc
   git checkout -b feature/my-update
   ```
 
-- Use clear commit messages:
+- Use clear, conventional commit messages:
   ```bash
-  git commit -m "feat: add finance dashboard screen"
+  git commit -m "feat: add stock adjustment detail view"
   ```
 
-- Open a Pull Request once ready.
-- If your change adds a new UI screen or component, include a screenshot in your PR description.
+- Open a Pull Request once ready. If your change adds a new screen or component, include a screenshot in the PR
+  description.
 
 ---
 
 ## Where to Contribute
 
-- **External Pages**: Landing pages or other non-dashboard routes → `src/app/(external)/`  
-- **Auth Screens**: Login, register, and authentication layouts → `src/app/(main)/auth/`  
-- **Dashboard Screens**: Feature dashboards like CRM, Finance, Analytics → `src/app/(main)/dashboard/`
-- **Components**: Reusable UI goes in `src/components/`  
-- **Hooks**: Custom logic goes in `src/hooks/`  
-- **Themes**: New presets under `src/styles/presets/`  
+- **Routes/screens**: `src/app/(erp)/<module>/` — each module (orders, customers, finance, HR, etc.) follows the
+  same page/detail-page pattern.
+- **Reusable components**: `src/components/erp/` for ERP-specific building blocks, `src/components/ui/` for
+  shadcn/ui primitives.
+- **Mock data**: `src/data/erp/` — keep new records realistic and internally consistent (see the seeded generator
+  approach in `random.ts`).
+- **Domain types**: `src/types/erp.ts`.
 
 ---
 
 ## Guidelines
 
-- Prefer **TypeScript types** over `any`
-- Husky pre-commit hooks are enabled - linting and formatting run automatically when you commit, and if there are errors the commit will be blocked until they are fixed. 
-- Follow **Shadcn UI** style & Tailwind v4 conventions
-- Keep accessibility in mind (ARIA, keyboard nav)
-- Use clear commit messages with conventional prefixes (`feat:`, `fix:`, `chore:`, etc.)
-- Avoid unnecessary dependencies — prefer existing utilities where possible
+- Prefer explicit **TypeScript types** over `any`.
+- Husky pre-commit hooks run linting and formatting automatically; a commit is blocked until issues are fixed.
+- Follow existing shadcn/ui and Tailwind v4 conventions already used in the codebase.
+- Keep accessibility in mind (semantic HTML, ARIA labels, keyboard navigation, focus states).
+- Keep mock data fictional and non-round; avoid real personal information.
+- Avoid unnecessary dependencies — prefer what's already installed.
 
 ---
 
 ## Submitting PRs
 
-- Open a Pull Request once your changes are ready.  
-- Ensure your branch is up to date with `main` before submitting.  
-- Reference any related issue in your PR for context.
+- Ensure your branch is up to date with `main` before submitting.
+- Run `npm run check` (lint + format) and `npm run build` locally before opening a PR.
+- Reference any related issue for context.
 
 ---
 
 ## Questions & Support
 
-- Report bugs, suggestions, or issues via [GitHub Issues](https://github.com/arhamkhnz/next-shadcn-admin-dashboard/issues)
-
----
-
-Your contributions keep this project growing. 🚀
-
-**Happy Vibe Coding!**
+Report bugs or suggestions via [GitHub Issues](https://github.com/rudawirocaltontshuma/enterprise_erp/issues).
