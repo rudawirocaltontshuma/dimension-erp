@@ -1,0 +1,561 @@
+import type { Product, ProductStatus } from "@/types/erp";
+
+import { createRng, intBetween, isoDate, moneyBetween, padNumber, pick } from "./random";
+import { suppliers } from "./suppliers";
+
+interface ProductSeed {
+  name: string;
+  category: string;
+  subCategory: string;
+  unit: string;
+  low: number;
+  high: number;
+}
+
+const CATALOGUE: ProductSeed[] = [
+  {
+    name: "Nexora Industrial Drill 850W",
+    category: "Power Tools",
+    subCategory: "Drilling",
+    unit: "Each",
+    low: 1450,
+    high: 2400,
+  },
+  {
+    name: "Nexora Angle Grinder 900W",
+    category: "Power Tools",
+    subCategory: "Cutting",
+    unit: "Each",
+    low: 1180,
+    high: 1980,
+  },
+  {
+    name: "Nexora Cordless Impact Driver",
+    category: "Power Tools",
+    subCategory: "Fastening",
+    unit: "Each",
+    low: 2100,
+    high: 3450,
+  },
+  {
+    name: "Nexora Rotary Hammer 26mm",
+    category: "Power Tools",
+    subCategory: "Drilling",
+    unit: "Each",
+    low: 3200,
+    high: 5200,
+  },
+  {
+    name: "Nexora Circular Saw 185mm",
+    category: "Power Tools",
+    subCategory: "Cutting",
+    unit: "Each",
+    low: 1750,
+    high: 2890,
+  },
+  {
+    name: "Nexora Bench Grinder 200mm",
+    category: "Power Tools",
+    subCategory: "Workshop",
+    unit: "Each",
+    low: 1990,
+    high: 3150,
+  },
+  {
+    name: "Precision Torque Wrench Set",
+    category: "Hand Tools",
+    subCategory: "Wrenches",
+    unit: "Set",
+    low: 890,
+    high: 1740,
+  },
+  {
+    name: "Chrome Vanadium Socket Set 108pc",
+    category: "Hand Tools",
+    subCategory: "Sockets",
+    unit: "Set",
+    low: 1240,
+    high: 2180,
+  },
+  {
+    name: "Insulated Screwdriver Set 12pc",
+    category: "Hand Tools",
+    subCategory: "Screwdrivers",
+    unit: "Set",
+    low: 340,
+    high: 620,
+  },
+  {
+    name: "Heavy Duty Bolt Cutter 900mm",
+    category: "Hand Tools",
+    subCategory: "Cutting",
+    unit: "Each",
+    low: 640,
+    high: 1120,
+  },
+  { name: "Steel Tape Measure 8m", category: "Hand Tools", subCategory: "Measuring", unit: "Each", low: 95, high: 220 },
+  {
+    name: "Laser Distance Meter 60m",
+    category: "Instruments",
+    subCategory: "Measuring",
+    unit: "Each",
+    low: 1680,
+    high: 2740,
+  },
+  {
+    name: "Digital Multimeter TRMS",
+    category: "Instruments",
+    subCategory: "Electrical Testing",
+    unit: "Each",
+    low: 940,
+    high: 1980,
+  },
+  {
+    name: "Thermal Imaging Camera 160x120",
+    category: "Instruments",
+    subCategory: "Diagnostics",
+    unit: "Each",
+    low: 12400,
+    high: 21800,
+  },
+  {
+    name: "Digital Calliper 150mm",
+    category: "Instruments",
+    subCategory: "Measuring",
+    unit: "Each",
+    low: 380,
+    high: 720,
+  },
+  {
+    name: "Industrial Air Compressor 50L",
+    category: "Workshop Equipment",
+    subCategory: "Air Systems",
+    unit: "Each",
+    low: 5400,
+    high: 9200,
+  },
+  {
+    name: "Hydraulic Trolley Jack 3T",
+    category: "Workshop Equipment",
+    subCategory: "Lifting",
+    unit: "Each",
+    low: 2450,
+    high: 4100,
+  },
+  {
+    name: "Mobile Tool Cabinet 7 Drawer",
+    category: "Workshop Equipment",
+    subCategory: "Storage",
+    unit: "Each",
+    low: 4800,
+    high: 7900,
+  },
+  {
+    name: "Workshop Press 12 Ton",
+    category: "Workshop Equipment",
+    subCategory: "Fabrication",
+    unit: "Each",
+    low: 8600,
+    high: 14200,
+  },
+  {
+    name: "MIG Welding Machine 200A",
+    category: "Welding",
+    subCategory: "Machines",
+    unit: "Each",
+    low: 7400,
+    high: 12900,
+  },
+  {
+    name: "Arc Welding Rods 3.2mm 5kg",
+    category: "Welding",
+    subCategory: "Consumables",
+    unit: "Box",
+    low: 210,
+    high: 480,
+  },
+  {
+    name: "Auto Darkening Welding Helmet",
+    category: "Welding",
+    subCategory: "Safety",
+    unit: "Each",
+    low: 780,
+    high: 1620,
+  },
+  {
+    name: "Industrial Safety Helmet",
+    category: "Safety",
+    subCategory: "Head Protection",
+    unit: "Each",
+    low: 120,
+    high: 290,
+  },
+  {
+    name: "High Visibility Work Jacket",
+    category: "Safety",
+    subCategory: "Workwear",
+    unit: "Each",
+    low: 310,
+    high: 690,
+  },
+  { name: "Steel Toe Safety Boots", category: "Safety", subCategory: "Footwear", unit: "Pair", low: 640, high: 1280 },
+  {
+    name: "Cut Resistant Gloves Level 5",
+    category: "Safety",
+    subCategory: "Hand Protection",
+    unit: "Pair",
+    low: 85,
+    high: 210,
+  },
+  {
+    name: "Respirator Half Mask P3",
+    category: "Safety",
+    subCategory: "Respiratory",
+    unit: "Each",
+    low: 340,
+    high: 720,
+  },
+  { name: "Fire Extinguisher 9kg DCP", category: "Safety", subCategory: "Fire", unit: "Each", low: 590, high: 1140 },
+  {
+    name: "Three Phase Distribution Board",
+    category: "Electrical",
+    subCategory: "Distribution",
+    unit: "Each",
+    low: 2900,
+    high: 5400,
+  },
+  {
+    name: "Surge Protection Device 40kA",
+    category: "Electrical",
+    subCategory: "Protection",
+    unit: "Each",
+    low: 890,
+    high: 1780,
+  },
+  {
+    name: "Armoured Cable 4mm 100m",
+    category: "Electrical",
+    subCategory: "Cabling",
+    unit: "Roll",
+    low: 3400,
+    high: 6200,
+  },
+  {
+    name: "Industrial Socket Outlet 32A",
+    category: "Electrical",
+    subCategory: "Accessories",
+    unit: "Each",
+    low: 240,
+    high: 520,
+  },
+  {
+    name: "LED High Bay Luminaire 150W",
+    category: "Electrical",
+    subCategory: "Lighting",
+    unit: "Each",
+    low: 1180,
+    high: 2260,
+  },
+  {
+    name: "Emergency Exit Light Unit",
+    category: "Electrical",
+    subCategory: "Lighting",
+    unit: "Each",
+    low: 340,
+    high: 690,
+  },
+  {
+    name: "Variable Speed Drive 5.5kW",
+    category: "Automation",
+    subCategory: "Drives",
+    unit: "Each",
+    low: 8200,
+    high: 14600,
+  },
+  {
+    name: "Programmable Logic Controller 24IO",
+    category: "Automation",
+    subCategory: "Controllers",
+    unit: "Each",
+    low: 11400,
+    high: 19800,
+  },
+  {
+    name: "HMI Touch Panel 7 inch",
+    category: "Automation",
+    subCategory: "Interfaces",
+    unit: "Each",
+    low: 9200,
+    high: 15400,
+  },
+  {
+    name: "Proximity Sensor Inductive M18",
+    category: "Automation",
+    subCategory: "Sensors",
+    unit: "Each",
+    low: 320,
+    high: 780,
+  },
+  {
+    name: "Safety Light Curtain 600mm",
+    category: "Automation",
+    subCategory: "Safety Systems",
+    unit: "Each",
+    low: 14200,
+    high: 23800,
+  },
+  {
+    name: "Pneumatic Cylinder 63mm Bore",
+    category: "Pneumatics",
+    subCategory: "Actuators",
+    unit: "Each",
+    low: 1420,
+    high: 2680,
+  },
+  {
+    name: "Air Filter Regulator Lubricator",
+    category: "Pneumatics",
+    subCategory: "Preparation",
+    unit: "Each",
+    low: 940,
+    high: 1780,
+  },
+  {
+    name: "Polyurethane Air Hose 10m",
+    category: "Pneumatics",
+    subCategory: "Hoses",
+    unit: "Each",
+    low: 280,
+    high: 540,
+  },
+  {
+    name: "Hydraulic Power Pack 2.2kW",
+    category: "Hydraulics",
+    subCategory: "Power Units",
+    unit: "Each",
+    low: 18400,
+    high: 31200,
+  },
+  {
+    name: "Hydraulic Hose Assembly 1/2 inch",
+    category: "Hydraulics",
+    subCategory: "Hoses",
+    unit: "Each",
+    low: 420,
+    high: 890,
+  },
+  {
+    name: "Deep Groove Ball Bearing 6205",
+    category: "Mechanical",
+    subCategory: "Bearings",
+    unit: "Each",
+    low: 95,
+    high: 240,
+  },
+  {
+    name: "Taper Roller Bearing 30206",
+    category: "Mechanical",
+    subCategory: "Bearings",
+    unit: "Each",
+    low: 180,
+    high: 420,
+  },
+  {
+    name: "V-Belt Drive SPB 2000",
+    category: "Mechanical",
+    subCategory: "Power Transmission",
+    unit: "Each",
+    low: 210,
+    high: 480,
+  },
+  {
+    name: "Roller Chain 12B-1 5m",
+    category: "Mechanical",
+    subCategory: "Power Transmission",
+    unit: "Each",
+    low: 640,
+    high: 1240,
+  },
+  { name: "Geared Motor 1.5kW", category: "Mechanical", subCategory: "Motors", unit: "Each", low: 7400, high: 12800 },
+  {
+    name: "Stainless Bolt Assortment M6-M16",
+    category: "Fasteners",
+    subCategory: "Bolts",
+    unit: "Box",
+    low: 380,
+    high: 820,
+  },
+  {
+    name: "Structural Anchor Bolts M12 50pc",
+    category: "Fasteners",
+    subCategory: "Anchors",
+    unit: "Box",
+    low: 520,
+    high: 1080,
+  },
+  {
+    name: "Industrial Adhesive Cartridge 310ml",
+    category: "Consumables",
+    subCategory: "Adhesives",
+    unit: "Each",
+    low: 120,
+    high: 280,
+  },
+  {
+    name: "Cutting Disc 115mm 25pc",
+    category: "Consumables",
+    subCategory: "Abrasives",
+    unit: "Box",
+    low: 240,
+    high: 520,
+  },
+  {
+    name: "Multi Purpose Lubricant 20L",
+    category: "Consumables",
+    subCategory: "Lubricants",
+    unit: "Drum",
+    low: 1240,
+    high: 2280,
+  },
+  {
+    name: "Industrial Degreaser 25L",
+    category: "Consumables",
+    subCategory: "Chemicals",
+    unit: "Drum",
+    low: 890,
+    high: 1640,
+  },
+  {
+    name: "Heavy Duty Pallet Wrap 500mm",
+    category: "Packaging",
+    subCategory: "Wrapping",
+    unit: "Roll",
+    low: 180,
+    high: 380,
+  },
+  {
+    name: "Corrugated Carton 600x400x400",
+    category: "Packaging",
+    subCategory: "Cartons",
+    unit: "Bundle",
+    low: 240,
+    high: 540,
+  },
+  {
+    name: "Wooden Export Pallet 1200x1000",
+    category: "Packaging",
+    subCategory: "Pallets",
+    unit: "Each",
+    low: 190,
+    high: 420,
+  },
+  {
+    name: "Strapping Band PP 12mm 2000m",
+    category: "Packaging",
+    subCategory: "Strapping",
+    unit: "Roll",
+    low: 420,
+    high: 890,
+  },
+  {
+    name: "Barcode Label Roll 100x50mm",
+    category: "Packaging",
+    subCategory: "Labelling",
+    unit: "Roll",
+    low: 140,
+    high: 320,
+  },
+  {
+    name: "Warehouse Pallet Racking Bay",
+    category: "Storage",
+    subCategory: "Racking",
+    unit: "Bay",
+    low: 4200,
+    high: 7800,
+  },
+  { name: "Plastic Stacking Bin 600mm", category: "Storage", subCategory: "Bins", unit: "Each", low: 240, high: 520 },
+  {
+    name: "Hand Pallet Truck 2.5T",
+    category: "Materials Handling",
+    subCategory: "Trucks",
+    unit: "Each",
+    low: 4600,
+    high: 8100,
+  },
+  {
+    name: "Electric Stacker 1.2T",
+    category: "Materials Handling",
+    subCategory: "Stackers",
+    unit: "Each",
+    low: 68000,
+    high: 112000,
+  },
+  {
+    name: "Platform Trolley 300kg",
+    category: "Materials Handling",
+    subCategory: "Trolleys",
+    unit: "Each",
+    low: 1420,
+    high: 2680,
+  },
+];
+
+const MONTHS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+function buildProducts(): Product[] {
+  const rng = createRng(19880725);
+
+  return CATALOGUE.map((seed, index) => {
+    const supplier = suppliers[index % suppliers.length];
+    const price = Math.round(moneyBetween(rng, seed.low, seed.high) * 100) / 100;
+    const cost = Math.round(price * (0.52 + rng() * 0.22) * 100) / 100;
+    const reorderLevel = intBetween(rng, 20, 140);
+    const stockOnHand = index % 11 === 3 ? 0 : intBetween(rng, 0, 980);
+    const reserved = Math.min(stockOnHand, intBetween(rng, 0, 90));
+    const available = stockOnHand - reserved;
+
+    let status: ProductStatus = "Active";
+    if (index % 17 === 5) status = "Discontinued";
+    else if (stockOnHand === 0) status = "Out of Stock";
+    else if (available <= reorderLevel) status = "Low Stock";
+
+    const monthlySales = MONTHS.map((month) => {
+      const units = intBetween(rng, 12, 320);
+      return { month, units, revenue: Math.round(units * price * 100) / 100 };
+    });
+
+    return {
+      id: `PRD-${padNumber(index + 1, 4)}`,
+      sku: `NX-${seed.category.slice(0, 3).toUpperCase()}-${padNumber(index + 1, 4)}`,
+      name: seed.name,
+      description: `${seed.name} supplied through the Nexora ${seed.category.toLowerCase()} range. Rated for continuous industrial duty and stocked across all regional distribution centres.`,
+      category: seed.category,
+      subCategory: seed.subCategory,
+      brand: index % 3 === 0 ? "Nexora" : pick(rng, ["Ferrolink", "Trident", "Vantage", "Lumen", "Pinnacle"]),
+      supplierId: supplier.id,
+      supplierName: supplier.name,
+      unit: seed.unit,
+      price,
+      cost,
+      margin: Math.round(((price - cost) / price) * 1000) / 10,
+      taxRate: 15,
+      stockOnHand,
+      reserved,
+      available,
+      reorderLevel,
+      reorderQuantity: reorderLevel * 3,
+      leadTimeDays: supplier.leadTimeDays,
+      barcode: `600${padNumber(intBetween(rng, 100000000, 999999999), 9)}`,
+      weightKg: Math.round(moneyBetween(rng, 0.2, 68) * 100) / 100,
+      status,
+      createdAt: isoDate(-intBetween(rng, 240, 1600)),
+      monthlySales,
+    };
+  });
+}
+
+export const products: Product[] = buildProducts();
+
+export const productById = (id: string) => products.find((product) => product.id === id);
+
+export const productCategories = Array.from(new Set(products.map((product) => product.category))).sort();
