@@ -13,7 +13,13 @@ import type { Delivery } from "@/types/erp";
 
 const specs: ColumnSpec<Delivery>[] = [
   { id: "reference", header: "Delivery", kind: "strong", value: (row) => row.reference },
-  { id: "shipment", header: "Shipment", kind: "link", value: (row) => row.shipmentRef, href: (row) => `/shipments/${row.shipmentRef}` },
+  {
+    id: "shipment",
+    header: "Shipment",
+    kind: "link",
+    value: (row) => row.shipmentRef,
+    href: (row) => `/shipments/${row.shipmentRef}`,
+  },
   { id: "customer", header: "Customer", value: (row) => row.customerName },
   { id: "address", header: "Destination", kind: "muted", value: (row) => row.address },
   { id: "region", header: "Region", kind: "muted", value: (row) => row.region },
@@ -42,9 +48,24 @@ export default function DeliveriesPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard label="Delivery runs" value={formatNumber(deliveries.length)} hint="Current schedule" icon={Truck} />
-        <KpiCard label="Completed" value={formatNumber(completed.length)} hint="Proof of delivery captured" icon={CheckCircle2} />
-        <KpiCard label="Scheduled" value={formatNumber(scheduled.length)} hint="Planned for delivery" icon={CalendarClock} />
-        <KpiCard label="Failed attempts" value={formatNumber(failed.length)} hint="Requires rescheduling" icon={PackageX} />
+        <KpiCard
+          label="Completed"
+          value={formatNumber(completed.length)}
+          hint="Proof of delivery captured"
+          icon={CheckCircle2}
+        />
+        <KpiCard
+          label="Scheduled"
+          value={formatNumber(scheduled.length)}
+          hint="Planned for delivery"
+          icon={CalendarClock}
+        />
+        <KpiCard
+          label="Failed attempts"
+          value={formatNumber(failed.length)}
+          hint="Requires rescheduling"
+          icon={PackageX}
+        />
       </section>
 
       <SectionCard title="Delivery register">
@@ -57,9 +78,24 @@ export default function DeliveriesPage() {
           searchPlaceholder="Search deliveries, customers or drivers"
           pageSize={20}
           filters={[
-            { id: "status", label: "Status", options: uniqueValues(deliveries, (row) => row.status), getValue: (row) => row.status },
-            { id: "region", label: "Region", options: uniqueValues(deliveries, (row) => row.region), getValue: (row) => row.region },
-            { id: "driver", label: "Driver", options: uniqueValues(deliveries, (row) => row.driver), getValue: (row) => row.driver },
+            {
+              id: "status",
+              label: "Status",
+              options: uniqueValues(deliveries, (row) => row.status),
+              getValue: (row) => row.status,
+            },
+            {
+              id: "region",
+              label: "Region",
+              options: uniqueValues(deliveries, (row) => row.region),
+              getValue: (row) => row.region,
+            },
+            {
+              id: "driver",
+              label: "Driver",
+              options: uniqueValues(deliveries, (row) => row.driver),
+              getValue: (row) => row.driver,
+            },
           ]}
         />
       </SectionCard>

@@ -1,146 +1,176 @@
-# Next.js Admin Template with TypeScript & Shadcn UI
+# NEXORA ERP — Enterprise Resource Planning Platform
 
-**Studio Admin** - Includes multiple dashboards, authentication layouts, customizable theme presets, and more.
+NEXORA ERP is a complete, high-fidelity **frontend demonstration** of an enterprise resource planning platform for a
+fictional South African distribution and manufacturing group, *Nexora Holdings*. It covers the operational spine of a
+real ERP system — selling, buying, storing, moving, employing, delivering and reporting — across more than seventy
+fully populated screens.
 
-<img src="https://github.com/arhamkhnz/next-shadcn-admin-dashboard/blob/main/media/dashboard.png?version=5" alt="Dashboard Screenshot">
+> This project is a frontend-only enterprise ERP demonstration created for portfolio purposes. It uses fictional mock data and does not connect to a production database, authentication provider, financial service, banking service, payment provider or external business system.
 
-Most admin templates I found, free or paid, felt cluttered, outdated, or too rigid. I built this as a cleaner alternative with features often missing in others, such as theme toggling and layout controls, while keeping the design modern, minimal, and flexible.
+---
 
-> **View demo:** [studio admin](https://next-shadcn-admin-dashboard.vercel.app)
+## Purpose
 
-> [!NOTE]
-> Looking for the Base UI version? Check out [next-shadcn-admin-dashboard-baseui](https://github.com/arhamkhnz/next-shadcn-admin-dashboard-baseui).
->
-> Looking for the React Aria version? Check out [arhamkhnz/next-shadcn-admin-dashboard-aria](https://github.com/arhamkhnz/next-shadcn-admin-dashboard-aria).
->
-> Looking for the TanStack Start version? Check out [tanstack-shadcn-admin-dashboard](https://github.com/arhamkhnz/tanstack-shadcn-admin-dashboard).
+The project exists to demonstrate advanced frontend engineering to prospective clients and employers:
 
-> [!TIP]
-> I’m also working on Nuxt.js and Svelte versions of this dashboard. They’ll be live soon.
+- Designing and structuring a large, multi-module enterprise application.
+- Building a reusable component system that keeps sixty-plus screens consistent.
+- Modelling realistic business data with precise TypeScript types.
+- Delivering enterprise UX patterns — dense data tables, detail workspaces, dashboards, document views and
+  configuration screens — that remain usable from 320px to ultrawide displays, in light and dark themes.
 
-## Features
+It is **not** a production system. Nothing is persisted, no transactions are processed, and every record is fictional.
 
-- Built with Next.js 16, TypeScript, Tailwind CSS v4, and Shadcn UI  
-- Responsive and mobile-friendly  
-- Customizable theme presets (light/dark modes with color schemes like Tangerine, Brutalist, and more)  
-- Flexible layouts (collapsible sidebar, variable content widths)  
-- Authentication flows and screens  
-- Prebuilt dashboards (Default, CRM, Finance, Analytics, Productivity) plus legacy variants  
-- Role-Based Access Control (RBAC) with config-driven UI and multi-tenant support *(planned)*  
+---
 
-> [!NOTE]
-> The default dashboard uses the **shadcn neutral** theme.  
-> It also includes additional color presets inspired by [Tweakcn](https://tweakcn.com):  
->
-> - Tangerine  
-> - Neo Brutalism  
-> - Soft Pop  
->
-> You can create more presets by following the same structure as the existing ones.
+## Feature highlights
 
-> Looking for the **Next.js 15** version?  
-> Check out the [`archive/next15`](https://github.com/arhamkhnz/next-shadcn-admin-dashboard/tree/archive/next15) branch.  
-> This branch contains the setup prior to upgrading to Next 16 and the React Compiler.
+- **Application shell** — collapsible sidebar with grouped navigation and tooltips when collapsed, sticky header,
+  company switcher (Nexora Holdings / Distribution / Manufacturing), notification centre, demo profile menu, theme
+  switcher and a persistent DEMO MODE badge.
+- **Global search and command palette** — `Cmd/Ctrl + K` opens a categorised search across customers, products,
+  orders, invoices, suppliers, purchase orders, employees, projects, shipments and warehouses, plus quick navigation
+  commands and a theme toggle.
+- **Dashboard** — eight KPI cards, seven chart views (revenue trend, sales performance, revenue by category,
+  inventory distribution, order status, procurement spend, expense breakdown) and ten operational widgets.
+- **Advanced data tables** — TanStack Table v9 with search, faceted filters, sorting, pagination, column visibility
+  and row-click navigation. Filters render inline on desktop and inside a sheet on mobile.
+- **Detail workspaces** — tabbed profiles for customers, products, employees and projects; document views for orders,
+  invoices, quotes, purchase orders and shipments, each with a reusable activity timeline.
+- **Printable documents** — invoices, purchase orders, statements and reports use dedicated print styling.
+- **Forms** — react-hook-form with Zod validation, presented in dialogs with labels, descriptions, required
+  indicators, validation errors, Cancel and “Save Demo” (which raises a toast; nothing is saved).
+- **Administration** — company, locations, departments, currencies, tax, system preferences, document numbering,
+  notification routing and appearance, all with working local UI state.
 
-> Looking for the **Next.js 14 + Tailwind CSS v3** version?  
-> Check out the [`archive/next14-tailwindv3`](https://github.com/arhamkhnz/next-shadcn-admin-dashboard/tree/archive/next14-tailwindv3) branch.  
-> It has a different color theme and is not actively maintained, but I try to keep it updated with major changes.  
+---
 
-## Tech Stack
+## Modules
 
-- **Framework**: Next.js 16 (App Router), TypeScript, Tailwind CSS v4  
-- **UI Components**: Shadcn UI  
-- **Validation**: Zod  
-- **Forms & State Management**: React Hook Form, Zustand  
-- **Tables & Data Handling**: TanStack Table  
-- **Tooling & DX**: Biome, Husky  
+| Module | Screens |
+| --- | --- |
+| Dashboard | Enterprise overview, platform overview |
+| Operations | Orders, order detail, customers, customer profile, products, product detail, inventory, warehouses, warehouse detail, shipments |
+| Sales | Sales overview, quotes, quote detail, sales orders, invoices, invoice document, payments |
+| Procurement | Procurement overview, suppliers, supplier detail, purchase requests, purchase orders, purchase order detail, goods receipts, supplier invoices |
+| Inventory | Inventory overview, stock levels, stock movements, transfers, adjustments, warehouses |
+| Finance | Finance overview, chart of accounts, transactions, expenses, payments, invoices |
+| Human Resources | HR overview, employees, employee profile, departments, attendance, leave, payroll, performance |
+| Projects | Project overview, projects, project workspace, tasks (list and board), project costs |
+| Logistics | Logistics overview, shipments, shipment tracking, deliveries, routes, vehicles, tracking |
+| Reports | Report centre, profit & loss, balance sheet, cash flow, sales, inventory, procurement, HR, finance, operational |
+| Administration | Company, locations, departments, currencies, tax settings, system preferences, numbering, notifications, appearance |
 
-## Screens
+Every navigation link resolves to a real, populated screen — there are no placeholder or “coming soon” pages.
 
-### Available
-- Default Dashboard  
-- CRM Dashboard  
-- Finance Dashboard  
-- Analytics Dashboard  
-- Productivity Dashboard  
-- E-commerce Dashboard  
-- Academy Dashboard  
-- Logistics Dashboard  
-- Infrastructure Dashboard  
-- File Manager  
-- Patient Monitoring  
-- Chat Page  
-- Email Page  
-- Profile  
-- Users Management  
-- Roles Management  
-- Kanban Board  
-- Tasks Page  
-- Invoice Page  
-- Calendar Page  
-- Authentication (4 screens)  
-- Legacy: Default v1, CRM v1, Finance v1, Analytics v1
+---
 
-### Planned
-I’ve added all the planned screens. Feel free to open an issue for requesting something specific.
+## Tech stack
 
-## Colocation File System Architecture
+- **Framework** — Next.js (App Router), React 19
+- **Language** — TypeScript in strict mode
+- **Styling** — Tailwind CSS v4 with semantic theme tokens
+- **UI** — shadcn/ui components built on Radix primitives
+- **Tables** — TanStack Table v9
+- **Charts** — Recharts
+- **Forms** — react-hook-form with Zod resolvers
+- **Icons** — Lucide
+- **Notifications** — Sonner
+- **Preferences** — Zustand store with cookie-backed theme and layout preferences
+- **Tooling** — Biome for linting and formatting
 
-This project follows a **colocation-based architecture** each feature keeps its own pages, components, and logic inside its route folder.  
-Shared UI, hooks, and configuration live at the top level, making the codebase modular, scalable, and easier to maintain as the app grows.
+No backend, database, ORM, authentication provider, payment gateway or external API is used anywhere in the project.
 
-For a full breakdown of the structure with examples, see the [Next Colocation Template](https://github.com/arhamkhnz/next-colocation-template).
+---
 
-## Getting Started
+## Architecture
 
-You can run this project locally, or deploy it instantly with Vercel.
-
-### Deploy with Vercel
-
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Farhamkhnz%2Fnext-shadcn-admin-dashboard)
-
-_Deploy your own copy with one click._
-
-### Run locally
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/arhamkhnz/next-shadcn-admin-dashboard.git
-   ```
-   
-2. **Navigate into the project**
-   ```bash
-    cd next-shadcn-admin-dashboard
-   ```
-   
-3. **Install dependencies**
-   ```bash
-    npm install
-   ```
-
-4. **Start the development server**
-   ```bash
-   npm run dev
-   ```
-
-Your app will be running at [http://localhost:3000](http://localhost:3000)
-
-### Formatting and Linting
-
-Format, lint, and organize imports
-```bash
-npx @biomejs/biome check --write
 ```
-> For more information on available rules, fixes, and CLI options, refer to the [Biome documentation](https://biomejs.dev/).
+src/
+├── app/
+│   ├── (erp)/                 # The ERP application shell and every route
+│   │   ├── _components/       # Sidebar, header, command palette, notifications, company switcher
+│   │   ├── dashboard/         # Enterprise overview
+│   │   ├── orders/ customers/ products/ …
+│   │   ├── reports/           # Report centre and statement views
+│   │   └── settings/          # Administration section with its own layout and nav
+│   ├── globals.css            # Theme tokens, presets and print styling
+│   └── layout.tsx             # Root layout, fonts, toaster, preference provider
+├── components/
+│   ├── erp/                   # Reusable ERP kit (see below)
+│   └── ui/                    # shadcn/ui primitives
+├── data/erp/                  # Deterministic mock data generators and datasets
+├── lib/erp/                   # Currency/date formatting, status tones, search index
+├── navigation/                # Sidebar navigation and quick command definitions
+└── types/erp.ts               # Domain types for every entity
+```
+
+**Reusable ERP kit** (`src/components/erp/`): `kpi-card`, `data-table`, `table-columns`, `page-header` (with
+breadcrumbs), `status-badge`, `charts` (line, area, bar, pie/donut, progress meter), `activity-timeline`,
+`detail-panels` (info grid, section card, avatar group, stat row), `demo-actions` (toast actions, print, drawer,
+confirm dialog), `demo-form-dialog` and `states` (empty, error, skeletons).
 
 ---
 
-> [!IMPORTANT]  
-> This project is updated frequently. If you’re working from a fork or an older clone, pull the latest changes before syncing. Some updates may include breaking changes.
+## Mock data approach
+
+All data lives in `src/data/erp/*.ts` and is generated at module load from **seeded pseudo-random generators**
+(`src/data/erp/random.ts`). Seeding keeps the dataset:
+
+- **Deterministic** — the server render and client render always agree, so there are no hydration mismatches, and the
+  demo looks identical on every visit.
+- **Believable** — curated pools of South African names, cities, product categories and supplier names produce
+  realistic, non-round values, primarily in ZAR (`R 1,284,500.00`) with some USD, EUR and GBP examples.
+- **Substantial** — 44 customers, 65 products, 92 orders, 62 invoices, 38 quotes, 34 suppliers, 48 purchase orders,
+  150+ inventory records, 120 stock movements, 46 employees, 22 projects, 86 tasks, 64 shipments, 148 transactions and
+  18 notifications, with varied statuses throughout.
+
+Dates are anchored to a fixed demonstration “today” (30 June 2026) so that ageing, timelines and trends stay coherent.
 
 ---
 
-Contributions are welcome. Feel free to open issues, feature requests, or start a discussion.
+## Screenshots
 
+Screenshots are not committed to this repository. To capture your own, run the development server and visit
+`/dashboard`, `/orders/ORD-10401`, `/invoices/INV-2026001`, `/reports/profit-loss` and `/projects` in both light and
+dark themes.
 
-**Happy Vibe Coding!**
+---
+
+## Local development
+
+```bash
+npm install
+npm run dev
+```
+
+The application is served at `http://localhost:3000` and redirects to `/dashboard`.
+
+Other useful commands:
+
+```bash
+npm run build      # Production build
+npm run lint       # Biome lint
+npm run check      # Biome lint + format check
+npm run check:fix  # Apply safe fixes
+npm run format     # Format with Biome
+```
+
+---
+
+## Project structure conventions
+
+- Route-specific components live beside the route in `_components/`; shared components live in `src/components/`.
+- Server Components render static content; interactive screens are Client Components.
+- Domain types are centralised in `src/types/erp.ts`; `any` is not used.
+- Styling uses semantic theme tokens so every screen works in light mode, dark mode and the bundled theme presets.
+
+---
+
+## Portfolio disclaimer
+
+This project is a frontend-only enterprise ERP demonstration created for portfolio purposes. It uses fictional mock data and does not connect to a production database, authentication provider, financial service, banking service, payment provider or external business system.
+
+All companies, people, customers, suppliers, employees, documents and financial figures shown in NEXORA ERP are
+fictional. Buttons that save, approve, export or send display interface feedback only — no data is stored, transmitted
+or processed.

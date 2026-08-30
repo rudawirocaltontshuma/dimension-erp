@@ -21,15 +21,29 @@ export default function DepartmentsPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Departments" value={formatNumber(departments.length)} hint="Operating cost centres" icon={Building2} />
+        <KpiCard
+          label="Departments"
+          value={formatNumber(departments.length)}
+          hint="Operating cost centres"
+          icon={Building2}
+        />
         <KpiCard label="Headcount" value={formatNumber(headcount)} hint="Permanent and contract" icon={Users} />
         <KpiCard label="Annual budget" value={formatMoney(budget)} hint="Combined departmental budget" icon={Wallet} />
-        <KpiCard label="Budget utilised" value={formatPercent((spent / budget) * 100)} hint={`${formatMoney(spent)} spent to date`} icon={Wallet} />
+        <KpiCard
+          label="Budget utilised"
+          value={formatPercent((spent / budget) * 100)}
+          hint={`${formatMoney(spent)} spent to date`}
+          icon={Wallet}
+        />
       </section>
 
       <ChartCard title="Budget against spend" description="Annual budget compared with spend to date.">
         <ErpBarChart
-          data={departments.map((department) => ({ name: department.name, budget: department.annualBudget, spent: department.spentToDate }))}
+          data={departments.map((department) => ({
+            name: department.name,
+            budget: department.annualBudget,
+            spent: department.spentToDate,
+          }))}
           xKey="name"
           money
           series={[
@@ -58,7 +72,10 @@ export default function DepartmentsPage() {
                 <StatRow label="Headcount" value={formatNumber(department.headcount)} />
                 <StatRow label="Open positions" value={formatNumber(department.openPositions)} />
                 <StatRow label="Performance score" value={`${department.performanceScore} / 5.0`} />
-                <StatRow label="Remaining budget" value={formatMoney(department.annualBudget - department.spentToDate)} />
+                <StatRow
+                  label="Remaining budget"
+                  value={formatMoney(department.annualBudget - department.spentToDate)}
+                />
               </div>
             </div>
           </SectionCard>

@@ -29,7 +29,11 @@ export default function ProfitLossPage() {
   const netProfit = operatingProfit + otherIncome - otherExpenses;
 
   const priorNet =
-    priorRevenue - sumGroup("Cost of Sales", "prior") - sumGroup("Operating Expenses", "prior") + sumGroup("Other Income", "prior") - sumGroup("Other Expenses", "prior");
+    priorRevenue -
+    sumGroup("Cost of Sales", "prior") -
+    sumGroup("Operating Expenses", "prior") +
+    sumGroup("Other Income", "prior") -
+    sumGroup("Other Expenses", "prior");
 
   return (
     <div className="space-y-6">
@@ -45,10 +49,28 @@ export default function ProfitLossPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Revenue" value={formatMoney(revenue)} change={((revenue - priorRevenue) / priorRevenue) * 100} changeLabel="vs prior period" />
-        <KpiCard label="Gross profit" value={formatMoney(grossProfit)} hint={`Margin ${formatPercent((grossProfit / revenue) * 100)}`} />
-        <KpiCard label="Operating profit" value={formatMoney(operatingProfit)} hint={`Margin ${formatPercent((operatingProfit / revenue) * 100)}`} />
-        <KpiCard label="Net profit" value={formatMoney(netProfit)} change={((netProfit - priorNet) / priorNet) * 100} changeLabel="vs prior period" />
+        <KpiCard
+          label="Revenue"
+          value={formatMoney(revenue)}
+          change={((revenue - priorRevenue) / priorRevenue) * 100}
+          changeLabel="vs prior period"
+        />
+        <KpiCard
+          label="Gross profit"
+          value={formatMoney(grossProfit)}
+          hint={`Margin ${formatPercent((grossProfit / revenue) * 100)}`}
+        />
+        <KpiCard
+          label="Operating profit"
+          value={formatMoney(operatingProfit)}
+          hint={`Margin ${formatPercent((operatingProfit / revenue) * 100)}`}
+        />
+        <KpiCard
+          label="Net profit"
+          value={formatMoney(netProfit)}
+          change={((netProfit - priorNet) / priorNet) * 100}
+          changeLabel="vs prior period"
+        />
       </section>
 
       <ChartCard title="Monthly performance" description="Revenue, expenses and profit by month.">
@@ -64,7 +86,10 @@ export default function ProfitLossPage() {
         />
       </ChartCard>
 
-      <SectionCard title="Statement of comprehensive income" description="Current period compared with the prior period.">
+      <SectionCard
+        title="Statement of comprehensive income"
+        description="Current period compared with the prior period."
+      >
         <div className="w-full overflow-x-auto rounded-md border">
           <Table>
             <TableHeader className="bg-muted">
@@ -85,11 +110,17 @@ export default function ProfitLossPage() {
                   <Fragment key={group}>
                     <TableRow className="bg-muted/40">
                       <TableCell className="font-semibold">{group}</TableCell>
-                      <TableCell className="text-right font-semibold tabular-nums">{formatMoney(groupCurrent)}</TableCell>
-                      <TableCell className="text-right font-semibold tabular-nums">{formatMoney(groupPrior)}</TableCell>
-                      <TableCell className="text-right font-semibold tabular-nums">{formatMoney(groupCurrent - groupPrior)}</TableCell>
                       <TableCell className="text-right font-semibold tabular-nums">
-                        {formatPercent(groupPrior === 0 ? 0 : ((groupCurrent - groupPrior) / Math.abs(groupPrior)) * 100)}
+                        {formatMoney(groupCurrent)}
+                      </TableCell>
+                      <TableCell className="text-right font-semibold tabular-nums">{formatMoney(groupPrior)}</TableCell>
+                      <TableCell className="text-right font-semibold tabular-nums">
+                        {formatMoney(groupCurrent - groupPrior)}
+                      </TableCell>
+                      <TableCell className="text-right font-semibold tabular-nums">
+                        {formatPercent(
+                          groupPrior === 0 ? 0 : ((groupCurrent - groupPrior) / Math.abs(groupPrior)) * 100,
+                        )}
                       </TableCell>
                     </TableRow>
                     {lines.map((line) => {
@@ -102,7 +133,9 @@ export default function ProfitLossPage() {
                           <TableCell
                             className={cn(
                               "text-right tabular-nums",
-                              variance >= 0 ? "text-emerald-600 dark:text-emerald-400" : "text-red-600 dark:text-red-400",
+                              variance >= 0
+                                ? "text-emerald-600 dark:text-emerald-400"
+                                : "text-red-600 dark:text-red-400",
                             )}
                           >
                             {formatMoney(variance)}
@@ -119,7 +152,9 @@ export default function ProfitLossPage() {
               <TableRow className="bg-muted/60">
                 <TableCell className="font-semibold">Gross profit</TableCell>
                 <TableCell className="text-right font-semibold tabular-nums">{formatMoney(grossProfit)}</TableCell>
-                <TableCell className="text-right tabular-nums">{formatMoney(priorRevenue - sumGroup("Cost of Sales", "prior"))}</TableCell>
+                <TableCell className="text-right tabular-nums">
+                  {formatMoney(priorRevenue - sumGroup("Cost of Sales", "prior"))}
+                </TableCell>
                 <TableCell colSpan={2} />
               </TableRow>
               <TableRow className="bg-muted/60">
@@ -132,7 +167,9 @@ export default function ProfitLossPage() {
                 <TableCell className="text-right font-semibold tabular-nums">{formatMoney(netProfit)}</TableCell>
                 <TableCell className="text-right tabular-nums">{formatMoney(priorNet)}</TableCell>
                 <TableCell className="text-right tabular-nums">{formatMoney(netProfit - priorNet)}</TableCell>
-                <TableCell className="text-right tabular-nums">{formatPercent(((netProfit - priorNet) / priorNet) * 100)}</TableCell>
+                <TableCell className="text-right tabular-nums">
+                  {formatPercent(((netProfit - priorNet) / priorNet) * 100)}
+                </TableCell>
               </TableRow>
             </TableBody>
           </Table>

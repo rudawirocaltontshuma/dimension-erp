@@ -15,7 +15,13 @@ import { formatNumber } from "@/lib/erp/format";
 import type { LeaveRequest } from "@/types/erp";
 
 const specs: ColumnSpec<LeaveRequest>[] = [
-  { id: "employee", header: "Employee", kind: "link", value: (row) => row.employeeName, href: (row) => `/employees/${row.employeeId}` },
+  {
+    id: "employee",
+    header: "Employee",
+    kind: "link",
+    value: (row) => row.employeeName,
+    href: (row) => `/employees/${row.employeeId}`,
+  },
   { id: "department", header: "Department", kind: "muted", value: (row) => row.department },
   { id: "type", header: "Leave type", value: (row) => row.leaveType },
   { id: "start", header: "From", kind: "date", value: (row) => row.startDate },
@@ -53,8 +59,20 @@ export default function LeavePage() {
               </Button>
             }
             fields={[
-              { name: "employee", label: "Employee", type: "select", required: true, options: employees.slice(0, 25).map((employee) => employee.fullName) },
-              { name: "type", label: "Leave type", type: "select", required: true, options: ["Annual", "Sick", "Personal", "Family Responsibility", "Study"] },
+              {
+                name: "employee",
+                label: "Employee",
+                type: "select",
+                required: true,
+                options: employees.slice(0, 25).map((employee) => employee.fullName),
+              },
+              {
+                name: "type",
+                label: "Leave type",
+                type: "select",
+                required: true,
+                options: ["Annual", "Sick", "Personal", "Family Responsibility", "Study"],
+              },
               { name: "start", label: "Start date", type: "date", required: true },
               { name: "end", label: "End date", type: "date", required: true },
               { name: "reason", label: "Reason", type: "textarea" },
@@ -64,10 +82,25 @@ export default function LeavePage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Leave requests" value={formatNumber(leaveRequests.length)} hint="Current leave cycle" icon={CalendarDays} />
-        <KpiCard label="Approved" value={formatNumber(approved.length)} hint={`${approved.reduce((sum, request) => sum + request.days, 0)} days approved`} icon={CheckCircle2} />
+        <KpiCard
+          label="Leave requests"
+          value={formatNumber(leaveRequests.length)}
+          hint="Current leave cycle"
+          icon={CalendarDays}
+        />
+        <KpiCard
+          label="Approved"
+          value={formatNumber(approved.length)}
+          hint={`${approved.reduce((sum, request) => sum + request.days, 0)} days approved`}
+          icon={CheckCircle2}
+        />
         <KpiCard label="Pending" value={formatNumber(pending.length)} hint="Awaiting manager approval" icon={Clock} />
-        <KpiCard label="Days requested" value={formatNumber(leaveRequests.reduce((sum, request) => sum + request.days, 0))} hint="All leave types" icon={CalendarDays} />
+        <KpiCard
+          label="Days requested"
+          value={formatNumber(leaveRequests.reduce((sum, request) => sum + request.days, 0))}
+          hint="All leave types"
+          icon={CalendarDays}
+        />
       </section>
 
       <ChartCard title="Leave by type" description="Days requested per leave category.">
@@ -83,9 +116,24 @@ export default function LeavePage() {
           getSearchText={(row) => `${row.employeeName} ${row.department} ${row.leaveType} ${row.approver}`}
           searchPlaceholder="Search leave requests"
           filters={[
-            { id: "status", label: "Status", options: uniqueValues(leaveRequests, (row) => row.status), getValue: (row) => row.status },
-            { id: "type", label: "Leave type", options: uniqueValues(leaveRequests, (row) => row.leaveType), getValue: (row) => row.leaveType },
-            { id: "department", label: "Department", options: uniqueValues(leaveRequests, (row) => row.department), getValue: (row) => row.department },
+            {
+              id: "status",
+              label: "Status",
+              options: uniqueValues(leaveRequests, (row) => row.status),
+              getValue: (row) => row.status,
+            },
+            {
+              id: "type",
+              label: "Leave type",
+              options: uniqueValues(leaveRequests, (row) => row.leaveType),
+              getValue: (row) => row.leaveType,
+            },
+            {
+              id: "department",
+              label: "Department",
+              options: uniqueValues(leaveRequests, (row) => row.department),
+              getValue: (row) => row.department,
+            },
           ]}
         />
       </SectionCard>

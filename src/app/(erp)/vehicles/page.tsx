@@ -52,7 +52,13 @@ export default function VehiclesPage() {
             }
             fields={[
               { name: "registration", label: "Registration", required: true },
-              { name: "type", label: "Vehicle type", type: "select", required: true, options: ["Panel Van", "Rigid Truck", "Refrigerated Truck", "Bakkie", "Interlink"] },
+              {
+                name: "type",
+                label: "Vehicle type",
+                type: "select",
+                required: true,
+                options: ["Panel Van", "Rigid Truck", "Refrigerated Truck", "Bakkie", "Interlink"],
+              },
               { name: "make", label: "Make", required: true },
               { name: "model", label: "Model", required: true },
               { name: "driver", label: "Assigned driver", type: "select", options: drivers },
@@ -66,7 +72,12 @@ export default function VehiclesPage() {
         <KpiCard label="Fleet size" value={formatNumber(vehicles.length)} hint="All vehicle classes" icon={Truck} />
         <KpiCard label="Available" value={formatNumber(available.length)} hint="Ready for dispatch" icon={Truck} />
         <KpiCard label="In transit" value={formatNumber(inTransit.length)} hint="Currently on delivery" icon={Truck} />
-        <KpiCard label="In maintenance" value={formatNumber(maintenance.length)} hint="Scheduled or unplanned" icon={Wrench} />
+        <KpiCard
+          label="In maintenance"
+          value={formatNumber(maintenance.length)}
+          hint="Scheduled or unplanned"
+          icon={Wrench}
+        />
       </section>
 
       <SectionCard title="Fleet register">
@@ -78,8 +89,18 @@ export default function VehiclesPage() {
           getSearchText={(row) => `${row.id} ${row.registration} ${row.make} ${row.model} ${row.driver}`}
           searchPlaceholder="Search vehicles, registrations or drivers"
           filters={[
-            { id: "status", label: "Status", options: uniqueValues(vehicles, (row) => row.status), getValue: (row) => row.status },
-            { id: "type", label: "Type", options: uniqueValues(vehicles, (row) => row.type), getValue: (row) => row.type },
+            {
+              id: "status",
+              label: "Status",
+              options: uniqueValues(vehicles, (row) => row.status),
+              getValue: (row) => row.status,
+            },
+            {
+              id: "type",
+              label: "Type",
+              options: uniqueValues(vehicles, (row) => row.type),
+              getValue: (row) => row.type,
+            },
           ]}
         />
       </SectionCard>

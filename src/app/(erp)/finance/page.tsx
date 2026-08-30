@@ -38,12 +38,26 @@ export default function FinanceOverviewPage() {
         <KpiCard label="Total expenses" value={formatMoney(financeSummary.expenses)} change={5.2} icon={TrendingDown} />
         <KpiCard label="Net profit" value={formatMoney(financeSummary.netProfit)} change={9.7} icon={PiggyBank} />
         <KpiCard label="Cash position" value={formatMoney(financeSummary.cashPosition)} change={4.1} icon={Wallet} />
-        <KpiCard label="Accounts receivable" value={formatMoney(financeSummary.accountsReceivable)} change={-5.4} icon={ReceiptText} />
-        <KpiCard label="Accounts payable" value={formatMoney(financeSummary.accountsPayable)} change={3.6} icon={Coins} />
+        <KpiCard
+          label="Accounts receivable"
+          value={formatMoney(financeSummary.accountsReceivable)}
+          change={-5.4}
+          icon={ReceiptText}
+        />
+        <KpiCard
+          label="Accounts payable"
+          value={formatMoney(financeSummary.accountsPayable)}
+          change={3.6}
+          icon={Coins}
+        />
       </section>
 
       <section className="grid gap-4 lg:grid-cols-3">
-        <ChartCard title="Revenue and profitability" description="Monthly revenue trend in ZAR." className="lg:col-span-2">
+        <ChartCard
+          title="Revenue and profitability"
+          description="Monthly revenue trend in ZAR."
+          className="lg:col-span-2"
+        >
           <ErpLineChart
             data={revenueTrend}
             xKey="month"
@@ -55,7 +69,9 @@ export default function FinanceOverviewPage() {
           />
         </ChartCard>
         <ChartCard title="Expense mix" description="Claimed operating expenses by category.">
-          <ErpPieChart data={expenseBreakdown.slice(0, 6).map((entry) => ({ name: entry.category, value: entry.amount }))} />
+          <ErpPieChart
+            data={expenseBreakdown.slice(0, 6).map((entry) => ({ name: entry.category, value: entry.amount }))}
+          />
         </ChartCard>
       </section>
 
@@ -145,7 +161,11 @@ export default function FinanceOverviewPage() {
             {overdueInvoices.map((invoice) => (
               <li key={invoice.id} className="flex items-center justify-between gap-3 py-2.5">
                 <div className="min-w-0">
-                  <Link prefetch={false} href={`/invoices/${invoice.id}`} className="font-medium text-sm hover:underline">
+                  <Link
+                    prefetch={false}
+                    href={`/invoices/${invoice.id}`}
+                    className="font-medium text-sm hover:underline"
+                  >
                     {invoice.reference}
                   </Link>
                   <p className="truncate text-muted-foreground text-xs">
@@ -159,7 +179,10 @@ export default function FinanceOverviewPage() {
         </SectionCard>
       </section>
 
-      <SectionCard title="Ledger activity" description={`${formatNumber(transactions.length)} transactions posted in the current period.`}>
+      <SectionCard
+        title="Ledger activity"
+        description={`${formatNumber(transactions.length)} transactions posted in the current period.`}
+      >
         <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {(["Posted", "Reconciled", "Pending", "Void"] as const).map((status) => (
             <div key={status} className="rounded-lg border p-4">

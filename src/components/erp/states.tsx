@@ -67,8 +67,8 @@ export function TableSkeleton({ rows = 8, columns = 6 }: { readonly rows?: numbe
       </CardHeader>
       <CardContent className="space-y-3">
         {Array.from({ length: rows }, (_, rowIndex) => (
-          // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton placeholder rows
           <div
+            // biome-ignore lint/suspicious/noArrayIndexKey: static skeleton placeholder rows
             key={rowIndex}
             className="grid gap-3"
             style={{ gridTemplateColumns: `repeat(${columns}, minmax(0, 1fr))` }}

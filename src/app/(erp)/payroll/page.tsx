@@ -27,10 +27,30 @@ export default function PayrollPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Gross payroll" value={formatMoney(latest.grossPay)} hint={`${latest.period} run`} icon={Banknote} />
-        <KpiCard label="Net payroll" value={formatMoney(latest.netPay)} hint="After statutory deductions" icon={Wallet} />
-        <KpiCard label="Employees paid" value={formatNumber(latest.employees)} hint="Included in the latest run" icon={Users} />
-        <KpiCard label="Average salary" value={formatMoney(hrSummary.averageSalary)} hint="Monthly cost to company" icon={Banknote} />
+        <KpiCard
+          label="Gross payroll"
+          value={formatMoney(latest.grossPay)}
+          hint={`${latest.period} run`}
+          icon={Banknote}
+        />
+        <KpiCard
+          label="Net payroll"
+          value={formatMoney(latest.netPay)}
+          hint="After statutory deductions"
+          icon={Wallet}
+        />
+        <KpiCard
+          label="Employees paid"
+          value={formatNumber(latest.employees)}
+          hint="Included in the latest run"
+          icon={Users}
+        />
+        <KpiCard
+          label="Average salary"
+          value={formatMoney(hrSummary.averageSalary)}
+          hint="Monthly cost to company"
+          icon={Banknote}
+        />
       </section>
 
       <div className="grid gap-4 lg:grid-cols-2">
@@ -47,7 +67,13 @@ export default function PayrollPage() {
           />
         </ChartCard>
         <ChartCard title="Payroll by department" description="Monthly payroll cost per department.">
-          <ErpBarChart data={departmentPayroll} xKey="department" money series={[{ key: "payroll", label: "Payroll" }]} height={260} />
+          <ErpBarChart
+            data={departmentPayroll}
+            xKey="department"
+            money
+            series={[{ key: "payroll", label: "Payroll" }]}
+            height={260}
+          />
         </ChartCard>
       </div>
 

@@ -10,8 +10,8 @@ import { ActivityTimeline } from "@/components/erp/activity-timeline";
 import { InfoGrid, SectionCard } from "@/components/erp/detail-panels";
 import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
-import { StatusBadge } from "@/components/erp/status-badge";
 import { EmptyState } from "@/components/erp/states";
+import { StatusBadge } from "@/components/erp/status-badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { logisticsSummary, shipments } from "@/data/erp/logistics";
@@ -49,17 +49,32 @@ export default function TrackingPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Active consignments" value={formatNumber(TRACKABLE.length)} hint="Not yet delivered" icon={Radar} />
+        <KpiCard
+          label="Active consignments"
+          value={formatNumber(TRACKABLE.length)}
+          hint="Not yet delivered"
+          icon={Radar}
+        />
         <KpiCard label="In transit" value={formatNumber(logisticsSummary.inTransit)} hint="On the road" icon={Truck} />
-        <KpiCard label="Out for delivery" value={formatNumber(logisticsSummary.outForDelivery)} hint="Final delivery run" icon={Truck} />
-        <KpiCard label="On-time rate" value={formatPercent(logisticsSummary.onTimeRate)} hint="Rolling six weeks" icon={Radar} />
+        <KpiCard
+          label="Out for delivery"
+          value={formatNumber(logisticsSummary.outForDelivery)}
+          hint="Final delivery run"
+          icon={Truck}
+        />
+        <KpiCard
+          label="On-time rate"
+          value={formatPercent(logisticsSummary.onTimeRate)}
+          hint="Rolling six weeks"
+          icon={Radar}
+        />
       </section>
 
       <div className="grid gap-4 lg:grid-cols-3">
         <SectionCard title="Find a consignment" description="Search by shipment, order, customer or destination.">
           <div className="space-y-4">
             <div className="relative">
-              <Search aria-hidden className="-translate-y-1/2 absolute top-1/2 left-2.5 size-4 text-muted-foreground" />
+              <Search aria-hidden className="absolute top-1/2 left-2.5 size-4 -translate-y-1/2 text-muted-foreground" />
               <Input
                 value={query}
                 onChange={(event) => setQuery(event.target.value)}

@@ -8,8 +8,8 @@ import { DemoActionButton } from "@/components/erp/demo-actions";
 import { InfoGrid, SectionCard, StatRow } from "@/components/erp/detail-panels";
 import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
-import { StatusBadge } from "@/components/erp/status-badge";
 import { EmptyState } from "@/components/erp/states";
+import { StatusBadge } from "@/components/erp/status-badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { attendanceRecords, employees, leaveRequests, performanceReviews } from "@/data/erp/hr";
@@ -55,7 +55,11 @@ export default async function EmployeeProfilePage({ params }: { params: Promise<
           </div>
         }
         actions={
-          <DemoActionButton size="sm" message="Demo changes applied." description="A performance review was scheduled for this employee.">
+          <DemoActionButton
+            size="sm"
+            message="Demo changes applied."
+            description="A performance review was scheduled for this employee."
+          >
             Schedule review
           </DemoActionButton>
         }
@@ -65,7 +69,11 @@ export default async function EmployeeProfilePage({ params }: { params: Promise<
         <KpiCard label="Attendance rate" value={formatPercent(employee.attendanceRate)} hint="Rolling twelve months" />
         <KpiCard label="Performance score" value={`${employee.performanceScore} / 5.0`} hint="Latest review" />
         <KpiCard label="Leave balance" value={`${employee.leaveBalance} days`} hint="Annual leave available" />
-        <KpiCard label="Monthly cost to company" value={formatMoney(employee.salary, employee.currency)} hint={employee.employmentType} />
+        <KpiCard
+          label="Monthly cost to company"
+          value={formatMoney(employee.salary, employee.currency)}
+          hint={employee.employmentType}
+        />
       </section>
 
       <Tabs defaultValue="Overview" className="space-y-4">
@@ -100,9 +108,17 @@ export default async function EmployeeProfilePage({ params }: { params: Promise<
             <SectionCard title="Key measures">
               <div className="space-y-4">
                 <ProgressMeter label="Attendance" value={employee.attendanceRate} max={100} />
-                <ProgressMeter label="Performance" value={employee.performanceScore} max={5} hint={`${employee.performanceScore} / 5.0`} />
+                <ProgressMeter
+                  label="Performance"
+                  value={employee.performanceScore}
+                  max={5}
+                  hint={`${employee.performanceScore} / 5.0`}
+                />
                 <div className="space-y-1">
-                  <StatRow label="Leave taken" value={`${formatNumber(leave.reduce((sum, request) => sum + request.days, 0))} days`} />
+                  <StatRow
+                    label="Leave taken"
+                    value={`${formatNumber(leave.reduce((sum, request) => sum + request.days, 0))} days`}
+                  />
                   <StatRow label="Leave balance" value={`${employee.leaveBalance} days`} />
                   <StatRow label="Reviews completed" value={formatNumber(reviews.length)} />
                 </div>
@@ -151,7 +167,10 @@ export default async function EmployeeProfilePage({ params }: { params: Promise<
         <TabsContent value="Attendance">
           <SectionCard title="Attendance" description="Recent attendance records for this employee.">
             {attendance.length === 0 ? (
-              <EmptyState title="No attendance captured" description="Attendance for this employee is not part of the demonstration sample." />
+              <EmptyState
+                title="No attendance captured"
+                description="Attendance for this employee is not part of the demonstration sample."
+              />
             ) : (
               <div className="w-full overflow-x-auto rounded-md border">
                 <Table>
@@ -186,7 +205,10 @@ export default async function EmployeeProfilePage({ params }: { params: Promise<
         <TabsContent value="Leave">
           <SectionCard title="Leave history">
             {leave.length === 0 ? (
-              <EmptyState title="No leave recorded" description="This employee has no leave requests in the demonstration dataset." />
+              <EmptyState
+                title="No leave recorded"
+                description="This employee has no leave requests in the demonstration dataset."
+              />
             ) : (
               <div className="w-full overflow-x-auto rounded-md border">
                 <Table>
@@ -221,7 +243,10 @@ export default async function EmployeeProfilePage({ params }: { params: Promise<
         <TabsContent value="Performance">
           <SectionCard title="Performance reviews">
             {reviews.length === 0 ? (
-              <EmptyState title="No reviews recorded" description="Performance reviews for this employee will appear here." />
+              <EmptyState
+                title="No reviews recorded"
+                description="Performance reviews for this employee will appear here."
+              />
             ) : (
               <div className="w-full overflow-x-auto rounded-md border">
                 <Table>
@@ -256,7 +281,10 @@ export default async function EmployeeProfilePage({ params }: { params: Promise<
         </TabsContent>
 
         <TabsContent value="Documents">
-          <SectionCard title="Documents" description="Document register placeholders — no files are stored in this demonstration.">
+          <SectionCard
+            title="Documents"
+            description="Document register placeholders — no files are stored in this demonstration."
+          >
             <ul className="divide-y">
               {DOCUMENTS.map((document) => (
                 <li key={document.name} className="flex items-center justify-between gap-3 py-2.5">

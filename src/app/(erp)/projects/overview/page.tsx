@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ArrowRight, AlertTriangle, CheckCircle2, Rocket, Wallet } from "lucide-react";
+import { AlertTriangle, ArrowRight, CheckCircle2, Rocket, Wallet } from "lucide-react";
 
 import { ChartCard, ErpBarChart, ErpPieChart, ProgressMeter } from "@/components/erp/charts";
 import { AvatarGroup, SectionCard, StatRow } from "@/components/erp/detail-panels";
@@ -8,7 +8,7 @@ import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
 import { StatusBadge } from "@/components/erp/status-badge";
 import { Button } from "@/components/ui/button";
-import { projectCosts, projects, projectSummary, projectTasks } from "@/data/erp/projects";
+import { projectCosts, projectSummary, projects, projectTasks } from "@/data/erp/projects";
 import { formatDate, formatMoney, formatNumber, formatPercent } from "@/lib/erp/format";
 
 export default function ProjectOverviewPage() {
@@ -43,16 +43,42 @@ export default function ProjectOverviewPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Active projects" value={formatNumber(projectSummary.active)} hint={`${projectSummary.total} total`} icon={Rocket} />
-        <KpiCard label="At risk" value={formatNumber(projectSummary.atRisk)} hint="Escalated to the steering group" icon={AlertTriangle} />
-        <KpiCard label="Budget committed" value={formatMoney(projectSummary.budget)} hint={`${formatPercent((projectSummary.spent / projectSummary.budget) * 100)} spent`} icon={Wallet} />
-        <KpiCard label="Completed" value={formatNumber(projectSummary.completed)} hint="Closed and handed over" icon={CheckCircle2} />
+        <KpiCard
+          label="Active projects"
+          value={formatNumber(projectSummary.active)}
+          hint={`${projectSummary.total} total`}
+          icon={Rocket}
+        />
+        <KpiCard
+          label="At risk"
+          value={formatNumber(projectSummary.atRisk)}
+          hint="Escalated to the steering group"
+          icon={AlertTriangle}
+        />
+        <KpiCard
+          label="Budget committed"
+          value={formatMoney(projectSummary.budget)}
+          hint={`${formatPercent((projectSummary.spent / projectSummary.budget) * 100)} spent`}
+          icon={Wallet}
+        />
+        <KpiCard
+          label="Completed"
+          value={formatNumber(projectSummary.completed)}
+          hint="Closed and handed over"
+          icon={CheckCircle2}
+        />
       </section>
 
       <section className="grid gap-4 lg:grid-cols-3">
-        <ChartCard title="Budget against spend" description="Top projects by committed budget." className="lg:col-span-2">
+        <ChartCard
+          title="Budget against spend"
+          description="Top projects by committed budget."
+          className="lg:col-span-2"
+        >
           <ErpBarChart
-            data={projects.slice(0, 10).map((project) => ({ name: project.code, budget: project.budget, spent: project.spent }))}
+            data={projects
+              .slice(0, 10)
+              .map((project) => ({ name: project.code, budget: project.budget, spent: project.spent }))}
             xKey="name"
             money
             series={[
@@ -67,7 +93,13 @@ export default function ProjectOverviewPage() {
       </section>
 
       <ChartCard title="Costs by category" description="Recorded project costs by cost type.">
-        <ErpBarChart data={costByCategory} xKey="category" money series={[{ key: "amount", label: "Cost" }]} height={250} />
+        <ErpBarChart
+          data={costByCategory}
+          xKey="category"
+          money
+          series={[{ key: "amount", label: "Cost" }]}
+          height={250}
+        />
       </ChartCard>
 
       <section className="grid gap-4 lg:grid-cols-2">
@@ -76,7 +108,11 @@ export default function ProjectOverviewPage() {
             {attention.slice(0, 6).map((project) => (
               <li key={project.id} className="space-y-2">
                 <div className="flex flex-wrap items-center justify-between gap-2">
-                  <Link prefetch={false} href={`/projects/${project.id}`} className="font-medium text-sm hover:underline">
+                  <Link
+                    prefetch={false}
+                    href={`/projects/${project.id}`}
+                    className="font-medium text-sm hover:underline"
+                  >
                     {project.name}
                   </Link>
                   <StatusBadge status={project.status} />
@@ -95,12 +131,27 @@ export default function ProjectOverviewPage() {
 
         <SectionCard title="Delivery summary">
           <div className="space-y-1">
-            <StatRow label="Projects in planning" value={formatNumber(projects.filter((project) => project.status === "Planning").length)} />
+            <StatRow
+              label="Projects in planning"
+              value={formatNumber(projects.filter((project) => project.status === "Planning").length)}
+            />
             <StatRow label="Projects on hold" value={formatNumber(projectSummary.onHold)} />
-            <StatRow label="Tasks in flight" value={formatNumber(projectTasks.filter((task) => task.status === "In Progress").length)} />
-            <StatRow label="Tasks in review" value={formatNumber(projectTasks.filter((task) => task.status === "Review").length)} />
-            <StatRow label="Tasks completed" value={formatNumber(projectTasks.filter((task) => task.status === "Done").length)} />
-            <StatRow label="Recorded costs" value={formatMoney(projectCosts.reduce((sum, cost) => sum + cost.amount, 0))} />
+            <StatRow
+              label="Tasks in flight"
+              value={formatNumber(projectTasks.filter((task) => task.status === "In Progress").length)}
+            />
+            <StatRow
+              label="Tasks in review"
+              value={formatNumber(projectTasks.filter((task) => task.status === "Review").length)}
+            />
+            <StatRow
+              label="Tasks completed"
+              value={formatNumber(projectTasks.filter((task) => task.status === "Done").length)}
+            />
+            <StatRow
+              label="Recorded costs"
+              value={formatMoney(projectCosts.reduce((sum, cost) => sum + cost.amount, 0))}
+            />
           </div>
         </SectionCard>
       </section>

@@ -5,7 +5,14 @@ import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
 import { StatusBadge } from "@/components/erp/status-badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { inventoryByCategory, inventoryByWarehouse, inventoryRecords, inventorySummary, lowStockItems, stockMovements } from "@/data/erp/inventory";
+import {
+  inventoryByCategory,
+  inventoryByWarehouse,
+  inventoryRecords,
+  inventorySummary,
+  lowStockItems,
+  stockMovements,
+} from "@/data/erp/inventory";
 import { formatDate, formatMoney, formatNumber } from "@/lib/erp/format";
 
 export default function InventoryReportsPage() {
@@ -20,7 +27,11 @@ export default function InventoryReportsPage() {
         actions={
           <>
             <PrintButton label="Print report" />
-            <DemoActionButton size="sm" message="Export prepared for demonstration." description="An inventory valuation pack preview was generated.">
+            <DemoActionButton
+              size="sm"
+              message="Export prepared for demonstration."
+              description="An inventory valuation pack preview was generated."
+            >
               Export report
             </DemoActionButton>
           </>
@@ -36,10 +47,17 @@ export default function InventoryReportsPage() {
 
       <section className="grid gap-4 lg:grid-cols-3">
         <ChartCard title="Value by warehouse" description="Stock valuation per facility." className="lg:col-span-2">
-          <ErpBarChart data={inventoryByWarehouse} xKey="warehouse" money series={[{ key: "value", label: "Stock value" }]} />
+          <ErpBarChart
+            data={inventoryByWarehouse}
+            xKey="warehouse"
+            money
+            series={[{ key: "value", label: "Stock value" }]}
+          />
         </ChartCard>
         <ChartCard title="Value by category" description="Category concentration of stock value.">
-          <ErpPieChart data={inventoryByCategory.slice(0, 6).map((entry) => ({ name: entry.category, value: entry.value }))} />
+          <ErpPieChart
+            data={inventoryByCategory.slice(0, 6).map((entry) => ({ name: entry.category, value: entry.value }))}
+          />
         </ChartCard>
       </section>
 

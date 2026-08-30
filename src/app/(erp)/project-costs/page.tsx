@@ -14,11 +14,24 @@ import type { ProjectCost } from "@/types/erp";
 
 const specs: ColumnSpec<ProjectCost>[] = [
   { id: "reference", header: "Reference", kind: "strong", value: (row) => row.reference },
-  { id: "project", header: "Project", kind: "link", value: (row) => row.projectName, href: (row) => `/projects/${row.projectId}` },
+  {
+    id: "project",
+    header: "Project",
+    kind: "link",
+    value: (row) => row.projectName,
+    href: (row) => `/projects/${row.projectId}`,
+  },
   { id: "date", header: "Date", kind: "date", value: (row) => row.date },
   { id: "category", header: "Category", kind: "muted", value: (row) => row.category },
   { id: "description", header: "Description", value: (row) => row.description },
-  { id: "amount", header: "Amount", kind: "money", align: "right", value: (row) => row.amount, currency: (row) => row.currency },
+  {
+    id: "amount",
+    header: "Amount",
+    kind: "money",
+    align: "right",
+    value: (row) => row.amount,
+    currency: (row) => row.currency,
+  },
   { id: "status", header: "Status", kind: "status", value: (row) => row.status },
 ];
 
@@ -46,10 +59,25 @@ export default function ProjectCostsPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Cost entries" value={formatNumber(projectCosts.length)} hint="Across the portfolio" icon={Receipt} />
+        <KpiCard
+          label="Cost entries"
+          value={formatNumber(projectCosts.length)}
+          hint="Across the portfolio"
+          icon={Receipt}
+        />
         <KpiCard label="Recorded value" value={formatMoney(total)} hint="All cost categories" icon={Coins} />
-        <KpiCard label="Approved" value={formatMoney(approved.reduce((sum, cost) => sum + cost.amount, 0))} hint={`${approved.length} entries`} icon={FileCheck} />
-        <KpiCard label="Invoiced to client" value={formatMoney(invoiced.reduce((sum, cost) => sum + cost.amount, 0))} hint={`${invoiced.length} entries`} icon={Receipt} />
+        <KpiCard
+          label="Approved"
+          value={formatMoney(approved.reduce((sum, cost) => sum + cost.amount, 0))}
+          hint={`${approved.length} entries`}
+          icon={FileCheck}
+        />
+        <KpiCard
+          label="Invoiced to client"
+          value={formatMoney(invoiced.reduce((sum, cost) => sum + cost.amount, 0))}
+          hint={`${invoiced.length} entries`}
+          icon={Receipt}
+        />
       </section>
 
       <ChartCard title="Costs by category" description="Recorded project costs grouped by cost type.">
@@ -66,9 +94,24 @@ export default function ProjectCostsPage() {
           searchPlaceholder="Search costs or projects"
           pageSize={20}
           filters={[
-            { id: "category", label: "Category", options: uniqueValues(projectCosts, (row) => row.category), getValue: (row) => row.category },
-            { id: "status", label: "Status", options: uniqueValues(projectCosts, (row) => row.status), getValue: (row) => row.status },
-            { id: "project", label: "Project", options: uniqueValues(projectCosts, (row) => row.projectName), getValue: (row) => row.projectName },
+            {
+              id: "category",
+              label: "Category",
+              options: uniqueValues(projectCosts, (row) => row.category),
+              getValue: (row) => row.category,
+            },
+            {
+              id: "status",
+              label: "Status",
+              options: uniqueValues(projectCosts, (row) => row.status),
+              getValue: (row) => row.status,
+            },
+            {
+              id: "project",
+              label: "Project",
+              options: uniqueValues(projectCosts, (row) => row.projectName),
+              getValue: (row) => row.projectName,
+            },
           ]}
         />
       </SectionCard>

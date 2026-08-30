@@ -23,7 +23,13 @@ import type { ProjectTask, TaskStatus } from "@/types/erp";
 const specs: ColumnSpec<ProjectTask>[] = [
   { id: "reference", header: "Task", kind: "strong", value: (row) => row.reference },
   { id: "title", header: "Title", value: (row) => row.title },
-  { id: "project", header: "Project", kind: "link", value: (row) => row.projectName, href: (row) => `/projects/${row.projectId}` },
+  {
+    id: "project",
+    header: "Project",
+    kind: "link",
+    value: (row) => row.projectName,
+    href: (row) => `/projects/${row.projectId}`,
+  },
   { id: "assignee", header: "Assignee", kind: "muted", value: (row) => row.assignee },
   { id: "due", header: "Due", kind: "date", value: (row) => row.dueDate },
   { id: "estimate", header: "Estimate", kind: "number", align: "right", value: (row) => row.estimateHours },
@@ -64,7 +70,13 @@ export default function TasksPage() {
             }
             fields={[
               { name: "title", label: "Task title", required: true },
-              { name: "project", label: "Project", type: "select", required: true, options: projects.map((project) => project.name) },
+              {
+                name: "project",
+                label: "Project",
+                type: "select",
+                required: true,
+                options: projects.map((project) => project.name),
+              },
               { name: "assignee", label: "Assignee", required: true },
               { name: "due", label: "Due date", type: "date", required: true },
               { name: "priority", label: "Priority", type: "select", options: ["Low", "Medium", "High", "Critical"] },
@@ -76,9 +88,24 @@ export default function TasksPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard label="Tasks" value={formatNumber(projectTasks.length)} hint="All projects" icon={ClipboardCheck} />
-        <KpiCard label="In progress" value={formatNumber(projectTasks.filter((task) => task.status === "In Progress").length)} hint="Actively being delivered" icon={ClipboardCheck} />
-        <KpiCard label="In review" value={formatNumber(projectTasks.filter((task) => task.status === "Review").length)} hint="Awaiting sign-off" icon={ClipboardCheck} />
-        <KpiCard label="Completed" value={formatNumber(projectTasks.filter((task) => task.status === "Done").length)} hint="Closed tasks" icon={ClipboardCheck} />
+        <KpiCard
+          label="In progress"
+          value={formatNumber(projectTasks.filter((task) => task.status === "In Progress").length)}
+          hint="Actively being delivered"
+          icon={ClipboardCheck}
+        />
+        <KpiCard
+          label="In review"
+          value={formatNumber(projectTasks.filter((task) => task.status === "Review").length)}
+          hint="Awaiting sign-off"
+          icon={ClipboardCheck}
+        />
+        <KpiCard
+          label="Completed"
+          value={formatNumber(projectTasks.filter((task) => task.status === "Done").length)}
+          hint="Closed tasks"
+          icon={ClipboardCheck}
+        />
       </section>
 
       <div className="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
@@ -125,9 +152,24 @@ export default function TasksPage() {
             searchPlaceholder="Search tasks, projects or assignees"
             pageSize={20}
             filters={[
-              { id: "status", label: "Status", options: uniqueValues(projectTasks, (row) => row.status), getValue: (row) => row.status },
-              { id: "priority", label: "Priority", options: uniqueValues(projectTasks, (row) => row.priority), getValue: (row) => row.priority },
-              { id: "project", label: "Project", options: uniqueValues(projectTasks, (row) => row.projectName), getValue: (row) => row.projectName },
+              {
+                id: "status",
+                label: "Status",
+                options: uniqueValues(projectTasks, (row) => row.status),
+                getValue: (row) => row.status,
+              },
+              {
+                id: "priority",
+                label: "Priority",
+                options: uniqueValues(projectTasks, (row) => row.priority),
+                getValue: (row) => row.priority,
+              },
+              {
+                id: "project",
+                label: "Project",
+                options: uniqueValues(projectTasks, (row) => row.projectName),
+                getValue: (row) => row.projectName,
+              },
             ]}
           />
         </SectionCard>

@@ -41,7 +41,11 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
         actions={
           <>
             <PrintButton label="Print waybill" />
-            <DemoActionButton size="sm" message="Demo changes applied." description="A customer delivery notification was simulated.">
+            <DemoActionButton
+              size="sm"
+              message="Demo changes applied."
+              description="A customer delivery notification was simulated."
+            >
               Notify customer
             </DemoActionButton>
           </>
@@ -49,7 +53,11 @@ export default async function ShipmentDetailPage({ params }: { params: Promise<{
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Packages" value={formatNumber(shipment.packages)} hint={`${shipment.weightKg} kg total weight`} />
+        <KpiCard
+          label="Packages"
+          value={formatNumber(shipment.packages)}
+          hint={`${shipment.weightKg} kg total weight`}
+        />
         <KpiCard label="Service level" value={shipment.serviceLevel} hint={shipment.carrier} />
         <KpiCard label="Dispatched" value={formatDate(shipment.dispatchDate)} hint={`Driver ${shipment.driver}`} />
         <KpiCard label="Expected delivery" value={formatDate(shipment.expectedDelivery)} hint={shipment.status} />

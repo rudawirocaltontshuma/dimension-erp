@@ -20,7 +20,8 @@ import { formatDate, formatMoney, formatNumber } from "@/lib/erp/format";
 
 export default function ReportCentrePage() {
   const [category, setCategory] = useState<string>("All");
-  const visible = category === "All" ? reportDefinitions : reportDefinitions.filter((report) => report.category === category);
+  const visible =
+    category === "All" ? reportDefinitions : reportDefinitions.filter((report) => report.category === category);
 
   return (
     <div className="space-y-6">
@@ -44,9 +45,24 @@ export default function ReportCentrePage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Reports available" value={formatNumber(reportDefinitions.length)} hint={`${reportCategories.length} categories`} icon={FileText} />
-        <KpiCard label="Revenue reported" value={formatMoney(dashboardKpis.revenue)} hint="Year to date" icon={BarChart3} />
-        <KpiCard label="Net profit reported" value={formatMoney(dashboardKpis.netProfit)} hint="Year to date" icon={BarChart3} />
+        <KpiCard
+          label="Reports available"
+          value={formatNumber(reportDefinitions.length)}
+          hint={`${reportCategories.length} categories`}
+          icon={FileText}
+        />
+        <KpiCard
+          label="Revenue reported"
+          value={formatMoney(dashboardKpis.revenue)}
+          hint="Year to date"
+          icon={BarChart3}
+        />
+        <KpiCard
+          label="Net profit reported"
+          value={formatMoney(dashboardKpis.netProfit)}
+          hint="Year to date"
+          icon={BarChart3}
+        />
         <KpiCard label="Last refresh" value="30 Jun 2026" hint="All report data" icon={FileText} />
       </section>
 
@@ -107,7 +123,10 @@ export default function ReportCentrePage() {
         ))}
       </section>
 
-      <SectionCard title="Financial statements" description="Formal statutory statements prepared from the demonstration ledger.">
+      <SectionCard
+        title="Financial statements"
+        description="Formal statutory statements prepared from the demonstration ledger."
+      >
         <div className="grid gap-3 sm:grid-cols-3">
           {[
             { href: "/reports/profit-loss", label: "Profit & Loss Statement" },

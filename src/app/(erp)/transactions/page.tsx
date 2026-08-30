@@ -40,10 +40,20 @@ export default function TransactionsPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Transactions" value={formatNumber(transactions.length)} hint="Current financial year" icon={ScrollText} />
+        <KpiCard
+          label="Transactions"
+          value={formatNumber(transactions.length)}
+          hint="Current financial year"
+          icon={ScrollText}
+        />
         <KpiCard label="Total debits" value={formatMoney(debits)} hint="All ledger accounts" icon={ArrowUpRight} />
         <KpiCard label="Total credits" value={formatMoney(credits)} hint="All ledger accounts" icon={ArrowDownLeft} />
-        <KpiCard label="Reconciled" value={formatNumber(reconciled)} hint="Matched to the bank statement" icon={Coins} />
+        <KpiCard
+          label="Reconciled"
+          value={formatNumber(reconciled)}
+          hint="Matched to the bank statement"
+          icon={Coins}
+        />
       </section>
 
       <SectionCard title="Transaction register">
@@ -52,13 +62,30 @@ export default function TransactionsPage() {
           columns={columns}
           columnLabels={columnLabels}
           getRowId={(row) => row.id}
-          getSearchText={(row) => `${row.reference} ${row.description} ${row.category} ${row.accountName} ${row.source}`}
+          getSearchText={(row) =>
+            `${row.reference} ${row.description} ${row.category} ${row.accountName} ${row.source}`
+          }
           searchPlaceholder="Search transactions, accounts or categories"
           pageSize={20}
           filters={[
-            { id: "status", label: "Status", options: uniqueValues(transactions, (row) => row.status), getValue: (row) => row.status },
-            { id: "category", label: "Category", options: uniqueValues(transactions, (row) => row.category), getValue: (row) => row.category },
-            { id: "source", label: "Source", options: uniqueValues(transactions, (row) => row.source), getValue: (row) => row.source },
+            {
+              id: "status",
+              label: "Status",
+              options: uniqueValues(transactions, (row) => row.status),
+              getValue: (row) => row.status,
+            },
+            {
+              id: "category",
+              label: "Category",
+              options: uniqueValues(transactions, (row) => row.category),
+              getValue: (row) => row.category,
+            },
+            {
+              id: "source",
+              label: "Source",
+              options: uniqueValues(transactions, (row) => row.source),
+              getValue: (row) => row.source,
+            },
           ]}
         />
       </SectionCard>

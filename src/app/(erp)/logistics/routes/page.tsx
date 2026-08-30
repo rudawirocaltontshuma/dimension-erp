@@ -42,10 +42,20 @@ export default function RoutesPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Routes" value={formatNumber(deliveryRoutes.length)} hint="Across all regions" icon={RouteIcon} />
+        <KpiCard
+          label="Routes"
+          value={formatNumber(deliveryRoutes.length)}
+          hint="Across all regions"
+          icon={RouteIcon}
+        />
         <KpiCard label="Active routes" value={formatNumber(active.length)} hint="Currently running" icon={Truck} />
         <KpiCard label="Planned stops" value={formatNumber(stops)} hint="All routes" icon={MapPin} />
-        <KpiCard label="Planned distance" value={`${formatNumber(distance)} km`} hint="Across the schedule" icon={Timer} />
+        <KpiCard
+          label="Planned distance"
+          value={`${formatNumber(distance)} km`}
+          hint="Across the schedule"
+          icon={Timer}
+        />
       </section>
 
       <ChartCard title="Distance by route" description="Planned kilometres per route.">
@@ -66,8 +76,18 @@ export default function RoutesPage() {
           getSearchText={(row) => `${row.code} ${row.name} ${row.region} ${row.driver}`}
           searchPlaceholder="Search routes, regions or drivers"
           filters={[
-            { id: "status", label: "Status", options: uniqueValues(deliveryRoutes, (row) => row.status), getValue: (row) => row.status },
-            { id: "region", label: "Region", options: uniqueValues(deliveryRoutes, (row) => row.region), getValue: (row) => row.region },
+            {
+              id: "status",
+              label: "Status",
+              options: uniqueValues(deliveryRoutes, (row) => row.status),
+              getValue: (row) => row.status,
+            },
+            {
+              id: "region",
+              label: "Region",
+              options: uniqueValues(deliveryRoutes, (row) => row.region),
+              getValue: (row) => row.region,
+            },
           ]}
         />
       </SectionCard>

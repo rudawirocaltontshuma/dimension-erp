@@ -40,7 +40,9 @@ export default function ExpensesPage() {
 
   const byCategory = expenseCategories.map((category) => ({
     category,
-    amount: expenses.filter((expense) => expense.category === category).reduce((sum, expense) => sum + expense.amount, 0),
+    amount: expenses
+      .filter((expense) => expense.category === category)
+      .reduce((sum, expense) => sum + expense.amount, 0),
   }));
 
   return (
@@ -64,7 +66,12 @@ export default function ExpensesPage() {
               { name: "category", label: "Category", type: "select", required: true, options: expenseCategories },
               { name: "date", label: "Expense date", type: "date", required: true },
               { name: "amount", label: "Amount (ZAR)", type: "number", required: true },
-              { name: "method", label: "Payment method", type: "select", options: ["Company Card", "Reimbursement", "Petty Cash", "Direct Payment"] },
+              {
+                name: "method",
+                label: "Payment method",
+                type: "select",
+                options: ["Company Card", "Reimbursement", "Petty Cash", "Direct Payment"],
+              },
               { name: "description", label: "Description", type: "textarea", required: true },
             ]}
           />
@@ -74,12 +81,28 @@ export default function ExpensesPage() {
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard label="Claims" value={formatNumber(expenses.length)} hint="Rolling 180 days" icon={Receipt} />
         <KpiCard label="Claimed value" value={formatMoney(total)} hint="Excluding VAT recovery" icon={Wallet} />
-        <KpiCard label="Approved" value={formatMoney(approved.reduce((sum, expense) => sum + expense.amount, 0))} hint={`${approved.length} claims`} icon={CheckCircle2} />
-        <KpiCard label="Awaiting review" value={formatNumber(submitted.length)} hint="Submitted claims" icon={Receipt} />
+        <KpiCard
+          label="Approved"
+          value={formatMoney(approved.reduce((sum, expense) => sum + expense.amount, 0))}
+          hint={`${approved.length} claims`}
+          icon={CheckCircle2}
+        />
+        <KpiCard
+          label="Awaiting review"
+          value={formatNumber(submitted.length)}
+          hint="Submitted claims"
+          icon={Receipt}
+        />
       </section>
 
       <ChartCard title="Expenses by category" description="Claimed value per expense category.">
-        <ErpBarChart data={byCategory} xKey="category" money series={[{ key: "amount", label: "Claimed" }]} height={260} />
+        <ErpBarChart
+          data={byCategory}
+          xKey="category"
+          money
+          series={[{ key: "amount", label: "Claimed" }]}
+          height={260}
+        />
       </ChartCard>
 
       <SectionCard title="Expense register" description="Select a row to open the claim detail drawer.">
@@ -97,9 +120,19 @@ export default function ExpensesPage() {
             </Button>
           }
           filters={[
-            { id: "status", label: "Status", options: uniqueValues(expenses, (row) => row.status), getValue: (row) => row.status },
+            {
+              id: "status",
+              label: "Status",
+              options: uniqueValues(expenses, (row) => row.status),
+              getValue: (row) => row.status,
+            },
             { id: "category", label: "Category", options: expenseCategories, getValue: (row) => row.category },
-            { id: "department", label: "Department", options: uniqueValues(expenses, (row) => row.department), getValue: (row) => row.department },
+            {
+              id: "department",
+              label: "Department",
+              options: uniqueValues(expenses, (row) => row.department),
+              getValue: (row) => row.department,
+            },
           ]}
         />
       </SectionCard>

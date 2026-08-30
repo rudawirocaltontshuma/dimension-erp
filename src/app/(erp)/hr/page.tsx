@@ -47,10 +47,30 @@ export default function HrOverviewPage() {
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
         <KpiCard label="Employees" value={formatNumber(hrSummary.totalEmployees)} change={3.4} icon={Users} />
         <KpiCard label="New hires" value={formatNumber(hrSummary.newHires)} hint="Current quarter" icon={UserPlus} />
-        <KpiCard label="Open positions" value={formatNumber(hrSummary.openPositions)} hint="Across all departments" icon={BriefcaseBusiness} />
-        <KpiCard label="Leave requests" value={formatNumber(hrSummary.pendingLeave)} hint="Awaiting approval" icon={CalendarCheck} />
-        <KpiCard label="Attendance rate" value={formatPercent(hrSummary.attendanceRate)} change={0.8} icon={CalendarCheck} />
-        <KpiCard label="Monthly payroll" value={formatMoney(latestPayroll.grossPay)} hint={`${latestPayroll.period} gross`} icon={Users} />
+        <KpiCard
+          label="Open positions"
+          value={formatNumber(hrSummary.openPositions)}
+          hint="Across all departments"
+          icon={BriefcaseBusiness}
+        />
+        <KpiCard
+          label="Leave requests"
+          value={formatNumber(hrSummary.pendingLeave)}
+          hint="Awaiting approval"
+          icon={CalendarCheck}
+        />
+        <KpiCard
+          label="Attendance rate"
+          value={formatPercent(hrSummary.attendanceRate)}
+          change={0.8}
+          icon={CalendarCheck}
+        />
+        <KpiCard
+          label="Monthly payroll"
+          value={formatMoney(latestPayroll.grossPay)}
+          hint={`${latestPayroll.period} gross`}
+          icon={Users}
+        />
       </section>
 
       <section className="grid gap-4 lg:grid-cols-3">
@@ -58,7 +78,9 @@ export default function HrOverviewPage() {
           <ErpLineChart data={employeeGrowth} xKey="month" series={[{ key: "employees", label: "Employees" }]} />
         </ChartCard>
         <ChartCard title="Department distribution" description="Headcount split by department.">
-          <ErpPieChart data={departments.map((department) => ({ name: department.name, value: department.headcount }))} />
+          <ErpPieChart
+            data={departments.map((department) => ({ name: department.name, value: department.headcount }))}
+          />
         </ChartCard>
       </section>
 
@@ -146,10 +168,22 @@ export default function HrOverviewPage() {
           }
         >
           <div className="space-y-1">
-            <StatRow label="Active" value={formatNumber(employees.filter((employee) => employee.status === "Active").length)} />
-            <StatRow label="On leave" value={formatNumber(employees.filter((employee) => employee.status === "On Leave").length)} />
-            <StatRow label="Inactive" value={formatNumber(employees.filter((employee) => employee.status === "Inactive").length)} />
-            <StatRow label="Permanent contracts" value={formatNumber(employees.filter((employee) => employee.employmentType === "Permanent").length)} />
+            <StatRow
+              label="Active"
+              value={formatNumber(employees.filter((employee) => employee.status === "Active").length)}
+            />
+            <StatRow
+              label="On leave"
+              value={formatNumber(employees.filter((employee) => employee.status === "On Leave").length)}
+            />
+            <StatRow
+              label="Inactive"
+              value={formatNumber(employees.filter((employee) => employee.status === "Inactive").length)}
+            />
+            <StatRow
+              label="Permanent contracts"
+              value={formatNumber(employees.filter((employee) => employee.employmentType === "Permanent").length)}
+            />
             <StatRow label="Average salary" value={formatMoney(hrSummary.averageSalary)} />
             <StatRow label="Turnover rate" value={formatPercent(hrSummary.turnoverRate)} />
           </div>

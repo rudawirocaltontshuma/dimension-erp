@@ -5,7 +5,15 @@ import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
 import { StatusBadge } from "@/components/erp/status-badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { attendanceRecords, departments, employeeGrowth, employees, hrSummary, leaveRequests, payrollTrend } from "@/data/erp/hr";
+import {
+  attendanceRecords,
+  departments,
+  employeeGrowth,
+  employees,
+  hrSummary,
+  leaveRequests,
+  payrollTrend,
+} from "@/data/erp/hr";
 import { formatMoney, formatNumber, formatPercent } from "@/lib/erp/format";
 
 export default function HrReportsPage() {
@@ -28,7 +36,11 @@ export default function HrReportsPage() {
         actions={
           <>
             <PrintButton label="Print report" />
-            <DemoActionButton size="sm" message="Export prepared for demonstration." description="A workforce report preview was generated.">
+            <DemoActionButton
+              size="sm"
+              message="Export prepared for demonstration."
+              description="A workforce report preview was generated."
+            >
               Export report
             </DemoActionButton>
           </>

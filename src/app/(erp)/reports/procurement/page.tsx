@@ -36,7 +36,11 @@ export default function ProcurementReportsPage() {
         actions={
           <>
             <PrintButton label="Print report" />
-            <DemoActionButton size="sm" message="Export prepared for demonstration." description="A procurement analysis pack preview was generated.">
+            <DemoActionButton
+              size="sm"
+              message="Export prepared for demonstration."
+              description="A procurement analysis pack preview was generated."
+            >
               Export report
             </DemoActionButton>
           </>
@@ -47,7 +51,11 @@ export default function ProcurementReportsPage() {
         <KpiCard label="Committed spend" value={formatMoney(spend)} change={6.2} />
         <KpiCard label="Purchase orders" value={formatNumber(purchaseOrders.length)} hint="Current period" />
         <KpiCard label="Receipt fill rate" value={formatPercent(fillRate)} hint="Received against ordered" />
-        <KpiCard label="Payables outstanding" value={formatMoney(supplierInvoices.reduce((sum, invoice) => sum + (invoice.amount - invoice.amountPaid), 0))} hint="Supplier invoices" />
+        <KpiCard
+          label="Payables outstanding"
+          value={formatMoney(supplierInvoices.reduce((sum, invoice) => sum + (invoice.amount - invoice.amountPaid), 0))}
+          hint="Supplier invoices"
+        />
       </section>
 
       <section className="grid gap-4 lg:grid-cols-3">
@@ -61,7 +69,10 @@ export default function ProcurementReportsPage() {
 
       <ChartCard title="Supplier spend" description="Top suppliers by lifetime spend.">
         <ErpBarChart
-          data={topSuppliers.map((supplier) => ({ supplier: supplier.name.replace(" (Pty) Ltd", ""), spend: supplier.totalSpend }))}
+          data={topSuppliers.map((supplier) => ({
+            supplier: supplier.name.replace(" (Pty) Ltd", ""),
+            spend: supplier.totalSpend,
+          }))}
           xKey="supplier"
           money
           series={[{ key: "spend", label: "Spend" }]}
@@ -93,8 +104,12 @@ export default function ProcurementReportsPage() {
                   </TableCell>
                   <TableCell className="text-muted-foreground">{supplier.category}</TableCell>
                   <TableCell className="text-right tabular-nums">{formatNumber(supplier.totalOrders)}</TableCell>
-                  <TableCell className="text-right tabular-nums">{formatMoney(supplier.totalSpend, supplier.currency)}</TableCell>
-                  <TableCell className="text-right tabular-nums">{formatPercent(supplier.onTimeDeliveryRate)}</TableCell>
+                  <TableCell className="text-right tabular-nums">
+                    {formatMoney(supplier.totalSpend, supplier.currency)}
+                  </TableCell>
+                  <TableCell className="text-right tabular-nums">
+                    {formatPercent(supplier.onTimeDeliveryRate)}
+                  </TableCell>
                   <TableCell className="text-right tabular-nums">{supplier.qualityScore}</TableCell>
                   <TableCell>
                     <StatusBadge status={supplier.status} />

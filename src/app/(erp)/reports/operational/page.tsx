@@ -8,7 +8,7 @@ import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@
 import { operationsSnapshot } from "@/data/erp/dashboard";
 import { deliveryPerformance, logisticsSummary, shipmentsByRegion, vehicles } from "@/data/erp/logistics";
 import { warehouses } from "@/data/erp/organisation";
-import { projects, projectSummary } from "@/data/erp/projects";
+import { projectSummary, projects } from "@/data/erp/projects";
 import { orders } from "@/data/erp/sales";
 import { formatMoney, formatNumber, formatPercent } from "@/lib/erp/format";
 
@@ -27,7 +27,11 @@ export default function OperationalReportsPage() {
         actions={
           <>
             <PrintButton label="Print report" />
-            <DemoActionButton size="sm" message="Export prepared for demonstration." description="An operational service pack preview was generated.">
+            <DemoActionButton
+              size="sm"
+              message="Export prepared for demonstration."
+              description="An operational service pack preview was generated."
+            >
               Export report
             </DemoActionButton>
           </>
@@ -37,12 +41,24 @@ export default function OperationalReportsPage() {
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
         <KpiCard label="Order fulfilment rate" value={formatPercent(operationsSnapshot.fulfilmentRate)} change={1.4} />
         <KpiCard label="On-time delivery" value={formatPercent(logisticsSummary.onTimeRate)} change={2.1} />
-        <KpiCard label="Fleet available" value={formatNumber(vehicles.filter((vehicle) => vehicle.status === "Available").length)} hint={`${vehicles.length} vehicles in the fleet`} />
-        <KpiCard label="Projects at risk" value={formatNumber(projectSummary.atRisk)} hint={`${projectSummary.active} active projects`} />
+        <KpiCard
+          label="Fleet available"
+          value={formatNumber(vehicles.filter((vehicle) => vehicle.status === "Available").length)}
+          hint={`${vehicles.length} vehicles in the fleet`}
+        />
+        <KpiCard
+          label="Projects at risk"
+          value={formatNumber(projectSummary.atRisk)}
+          hint={`${projectSummary.active} active projects`}
+        />
       </section>
 
       <section className="grid gap-4 lg:grid-cols-3">
-        <ChartCard title="Delivery performance" description="On-time against late deliveries by week." className="lg:col-span-2">
+        <ChartCard
+          title="Delivery performance"
+          description="On-time against late deliveries by week."
+          className="lg:col-span-2"
+        >
           <ErpBarChart
             data={deliveryPerformance}
             xKey="week"
@@ -59,7 +75,12 @@ export default function OperationalReportsPage() {
       </section>
 
       <ChartCard title="Shipments by region" description="Consignment volume by destination province.">
-        <ErpBarChart data={shipmentsByRegion} xKey="region" series={[{ key: "count", label: "Shipments" }]} height={260} />
+        <ErpBarChart
+          data={shipmentsByRegion}
+          xKey="region"
+          series={[{ key: "count", label: "Shipments" }]}
+          height={260}
+        />
       </ChartCard>
 
       <SectionCard title="Warehouse throughput" description="Inbound and outbound activity per facility.">
@@ -72,8 +93,8 @@ export default function OperationalReportsPage() {
               </div>
               <ProgressMeter label="Capacity utilisation" value={warehouse.utilization} max={100} />
               <p className="text-muted-foreground text-xs">
-                Inbound {formatNumber(warehouse.inboundThisWeek)} · Outbound {formatNumber(warehouse.outboundThisWeek)} ·{" "}
-                {formatMoney(warehouse.stockValue)} stock value
+                Inbound {formatNumber(warehouse.inboundThisWeek)} · Outbound {formatNumber(warehouse.outboundThisWeek)}{" "}
+                · {formatMoney(warehouse.stockValue)} stock value
               </p>
             </div>
           ))}

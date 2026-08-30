@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-import { ArrowRight, AlertTriangle, PackageCheck, Route as RouteIcon, Truck } from "lucide-react";
+import { AlertTriangle, ArrowRight, PackageCheck, Route as RouteIcon, Truck } from "lucide-react";
 
 import { ChartCard, ErpBarChart, ErpPieChart } from "@/components/erp/charts";
 import { SectionCard, StatRow } from "@/components/erp/detail-panels";
@@ -19,10 +19,12 @@ import {
 import { formatDate, formatNumber, formatPercent } from "@/lib/erp/format";
 
 export default function LogisticsOverviewPage() {
-  const statusSplit = (["Preparing", "In Transit", "Out for Delivery", "Delivered", "Delayed"] as const).map((status) => ({
-    name: status,
-    value: shipments.filter((shipment) => shipment.status === status).length,
-  }));
+  const statusSplit = (["Preparing", "In Transit", "Out for Delivery", "Delivered", "Delayed"] as const).map(
+    (status) => ({
+      name: status,
+      value: shipments.filter((shipment) => shipment.status === status).length,
+    }),
+  );
 
   const activeRoutes = deliveryRoutes.filter((route) => route.status === "Active");
 
@@ -43,16 +45,50 @@ export default function LogisticsOverviewPage() {
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3 2xl:grid-cols-6">
-        <KpiCard label="Shipments" value={formatNumber(logisticsSummary.totalShipments)} hint="Rolling 60 days" icon={Truck} />
-        <KpiCard label="In transit" value={formatNumber(logisticsSummary.inTransit)} hint="Currently on the road" icon={Truck} />
-        <KpiCard label="Delivered" value={formatNumber(logisticsSummary.delivered)} hint="Proof of delivery captured" icon={PackageCheck} />
-        <KpiCard label="Delayed" value={formatNumber(logisticsSummary.delayed)} hint="Requires customer notice" icon={AlertTriangle} />
-        <KpiCard label="Active vehicles" value={formatNumber(logisticsSummary.activeVehicles)} hint={`${vehicles.length} in the fleet`} icon={Truck} />
-        <KpiCard label="Active routes" value={formatNumber(logisticsSummary.activeRoutes)} hint={`${deliveryRoutes.length} planned routes`} icon={RouteIcon} />
+        <KpiCard
+          label="Shipments"
+          value={formatNumber(logisticsSummary.totalShipments)}
+          hint="Rolling 60 days"
+          icon={Truck}
+        />
+        <KpiCard
+          label="In transit"
+          value={formatNumber(logisticsSummary.inTransit)}
+          hint="Currently on the road"
+          icon={Truck}
+        />
+        <KpiCard
+          label="Delivered"
+          value={formatNumber(logisticsSummary.delivered)}
+          hint="Proof of delivery captured"
+          icon={PackageCheck}
+        />
+        <KpiCard
+          label="Delayed"
+          value={formatNumber(logisticsSummary.delayed)}
+          hint="Requires customer notice"
+          icon={AlertTriangle}
+        />
+        <KpiCard
+          label="Active vehicles"
+          value={formatNumber(logisticsSummary.activeVehicles)}
+          hint={`${vehicles.length} in the fleet`}
+          icon={Truck}
+        />
+        <KpiCard
+          label="Active routes"
+          value={formatNumber(logisticsSummary.activeRoutes)}
+          hint={`${deliveryRoutes.length} planned routes`}
+          icon={RouteIcon}
+        />
       </section>
 
       <section className="grid gap-4 lg:grid-cols-3">
-        <ChartCard title="Delivery performance" description="On-time versus late deliveries by week." className="lg:col-span-2">
+        <ChartCard
+          title="Delivery performance"
+          description="On-time versus late deliveries by week."
+          className="lg:col-span-2"
+        >
           <ErpBarChart
             data={deliveryPerformance}
             xKey="week"
@@ -69,7 +105,12 @@ export default function LogisticsOverviewPage() {
       </section>
 
       <ChartCard title="Regional distribution" description="Consignment volume by destination province.">
-        <ErpBarChart data={shipmentsByRegion} xKey="region" series={[{ key: "count", label: "Shipments" }]} height={260} />
+        <ErpBarChart
+          data={shipmentsByRegion}
+          xKey="region"
+          series={[{ key: "count", label: "Shipments" }]}
+          height={260}
+        />
       </ChartCard>
 
       <section className="grid gap-4 lg:grid-cols-3">
@@ -89,7 +130,11 @@ export default function LogisticsOverviewPage() {
             {shipments.slice(0, 8).map((shipment) => (
               <li key={shipment.id} className="flex flex-wrap items-center justify-between gap-3 py-2.5">
                 <div className="min-w-0">
-                  <Link prefetch={false} href={`/shipments/${shipment.id}`} className="font-medium text-sm hover:underline">
+                  <Link
+                    prefetch={false}
+                    href={`/shipments/${shipment.id}`}
+                    className="font-medium text-sm hover:underline"
+                  >
                     {shipment.reference}
                   </Link>
                   <p className="truncate text-muted-foreground text-xs">
@@ -110,9 +155,18 @@ export default function LogisticsOverviewPage() {
             <StatRow label="On-time delivery" value={formatPercent(logisticsSummary.onTimeRate)} />
             <StatRow label="Out for delivery" value={formatNumber(logisticsSummary.outForDelivery)} />
             <StatRow label="Routes active" value={formatNumber(activeRoutes.length)} />
-            <StatRow label="Vehicles in maintenance" value={formatNumber(vehicles.filter((vehicle) => vehicle.status === "Maintenance").length)} />
-            <StatRow label="Total stops planned" value={formatNumber(deliveryRoutes.reduce((sum, route) => sum + route.stops, 0))} />
-            <StatRow label="Planned distance" value={`${formatNumber(deliveryRoutes.reduce((sum, route) => sum + route.distanceKm, 0))} km`} />
+            <StatRow
+              label="Vehicles in maintenance"
+              value={formatNumber(vehicles.filter((vehicle) => vehicle.status === "Maintenance").length)}
+            />
+            <StatRow
+              label="Total stops planned"
+              value={formatNumber(deliveryRoutes.reduce((sum, route) => sum + route.stops, 0))}
+            />
+            <StatRow
+              label="Planned distance"
+              value={`${formatNumber(deliveryRoutes.reduce((sum, route) => sum + route.distanceKm, 0))} km`}
+            />
           </div>
         </SectionCard>
       </section>

@@ -53,7 +53,11 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
         actions={
           <>
             <PrintButton label="Print report" />
-            <DemoActionButton size="sm" message="Demo changes applied." description="A project status update was recorded for demonstration.">
+            <DemoActionButton
+              size="sm"
+              message="Demo changes applied."
+              description="A project status update was recorded for demonstration."
+            >
               Update status
             </DemoActionButton>
           </>
@@ -61,10 +65,22 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
       />
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
-        <KpiCard label="Progress" value={formatPercent(project.progress, 0)} hint={`${tasks.filter((task) => task.status === "Done").length} of ${tasks.length} tasks complete`} />
+        <KpiCard
+          label="Progress"
+          value={formatPercent(project.progress, 0)}
+          hint={`${tasks.filter((task) => task.status === "Done").length} of ${tasks.length} tasks complete`}
+        />
         <KpiCard label="Budget" value={formatMoney(project.budget, project.currency)} hint="Approved allocation" />
-        <KpiCard label="Spent" value={formatMoney(project.spent, project.currency)} hint={formatPercent((project.spent / project.budget) * 100)} />
-        <KpiCard label="Remaining" value={formatMoney(project.budget - project.spent, project.currency)} hint={`Deadline ${formatDate(project.deadline)}`} />
+        <KpiCard
+          label="Spent"
+          value={formatMoney(project.spent, project.currency)}
+          hint={formatPercent((project.spent / project.budget) * 100)}
+        />
+        <KpiCard
+          label="Remaining"
+          value={formatMoney(project.budget - project.spent, project.currency)}
+          hint={`Deadline ${formatDate(project.deadline)}`}
+        />
       </section>
 
       <Tabs defaultValue="Overview" className="space-y-4">
@@ -107,9 +123,20 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                   hint={formatPercent((project.spent / project.budget) * 100)}
                 />
                 <div className="space-y-1">
-                  <StatRow label="Open tasks" value={formatNumber(tasks.filter((task) => task.status !== "Done").length)} />
-                  <StatRow label="Milestones complete" value={formatNumber(project.milestones.filter((milestone) => milestone.status === "Complete").length)} />
-                  <StatRow label="Recorded costs" value={formatMoney(costs.reduce((sum, cost) => sum + cost.amount, 0))} />
+                  <StatRow
+                    label="Open tasks"
+                    value={formatNumber(tasks.filter((task) => task.status !== "Done").length)}
+                  />
+                  <StatRow
+                    label="Milestones complete"
+                    value={formatNumber(
+                      project.milestones.filter((milestone) => milestone.status === "Complete").length,
+                    )}
+                  />
+                  <StatRow
+                    label="Recorded costs"
+                    value={formatMoney(costs.reduce((sum, cost) => sum + cost.amount, 0))}
+                  />
                 </div>
               </div>
             </SectionCard>
@@ -173,7 +200,10 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
           <SectionCard title="Milestones" description="Delivery milestones for this project.">
             <ul className="space-y-3">
               {project.milestones.map((milestone) => (
-                <li key={milestone.id} className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-3">
+                <li
+                  key={milestone.id}
+                  className="flex flex-wrap items-center justify-between gap-2 rounded-lg border p-3"
+                >
                   <div>
                     <p className="font-medium text-sm">{milestone.name}</p>
                     <p className="text-muted-foreground text-xs">Due {formatDate(milestone.dueDate)}</p>
@@ -187,7 +217,13 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
 
         <TabsContent value="Budget" className="space-y-4">
           <ChartCard title="Cost by category" description="Recorded costs grouped by cost type.">
-            <ErpBarChart data={costByCategory} xKey="category" money series={[{ key: "amount", label: "Cost" }]} height={250} />
+            <ErpBarChart
+              data={costByCategory}
+              xKey="category"
+              money
+              series={[{ key: "amount", label: "Cost" }]}
+              height={250}
+            />
           </ChartCard>
           <SectionCard title="Budget position">
             <div className="space-y-1">
@@ -220,7 +256,9 @@ export default async function ProjectDetailPage({ params }: { params: Promise<{ 
                       <TableCell className="text-muted-foreground">{formatDate(cost.date)}</TableCell>
                       <TableCell>{cost.category}</TableCell>
                       <TableCell className="text-muted-foreground">{cost.description}</TableCell>
-                      <TableCell className="text-right tabular-nums">{formatMoney(cost.amount, cost.currency)}</TableCell>
+                      <TableCell className="text-right tabular-nums">
+                        {formatMoney(cost.amount, cost.currency)}
+                      </TableCell>
                       <TableCell>
                         <StatusBadge status={cost.status} />
                       </TableCell>

@@ -7,14 +7,16 @@ import { StatusBadge } from "@/components/erp/status-badge";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { accounts } from "@/data/erp/finance";
 import { formatMoney, formatNumber } from "@/lib/erp/format";
-import type { AccountType } from "@/types/erp";
 import { cn } from "@/lib/utils";
+import type { AccountType } from "@/types/erp";
 
 const GROUPS: AccountType[] = ["Asset", "Liability", "Equity", "Revenue", "Expense"];
 
 export default function AccountsPage() {
   const totalFor = (type: AccountType) =>
-    accounts.filter((account) => account.type === type && account.subType !== "Header").reduce((sum, account) => sum + account.balance, 0);
+    accounts
+      .filter((account) => account.type === type && account.subType !== "Header")
+      .reduce((sum, account) => sum + account.balance, 0);
 
   return (
     <div className="space-y-6">
@@ -26,7 +28,13 @@ export default function AccountsPage() {
 
       <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-5">
         {GROUPS.map((group) => (
-          <KpiCard key={group} label={`${group}s`} value={formatMoney(totalFor(group))} hint={`${accounts.filter((account) => account.type === group).length} accounts`} icon={Landmark} />
+          <KpiCard
+            key={group}
+            label={`${group}s`}
+            value={formatMoney(totalFor(group))}
+            hint={`${accounts.filter((account) => account.type === group).length} accounts`}
+            icon={Landmark}
+          />
         ))}
       </section>
 
@@ -54,7 +62,9 @@ export default function AccountsPage() {
                     const isHeader = account.subType === "Header";
                     return (
                       <TableRow key={account.id} className={cn(isHeader && "bg-muted/40")}>
-                        <TableCell className={cn("font-mono text-xs", isHeader && "font-semibold")}>{account.code}</TableCell>
+                        <TableCell className={cn("font-mono text-xs", isHeader && "font-semibold")}>
+                          {account.code}
+                        </TableCell>
                         <TableCell className={cn(isHeader ? "font-semibold" : "pl-8")}>{account.name}</TableCell>
                         <TableCell className="text-muted-foreground">{account.subType}</TableCell>
                         <TableCell>

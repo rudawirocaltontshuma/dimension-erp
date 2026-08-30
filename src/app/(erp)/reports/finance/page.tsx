@@ -46,7 +46,11 @@ export default function FinanceReportsPage() {
         actions={
           <>
             <PrintButton label="Print report" />
-            <DemoActionButton size="sm" message="Export prepared for demonstration." description="A finance pack preview was generated.">
+            <DemoActionButton
+              size="sm"
+              message="Export prepared for demonstration."
+              description="A finance pack preview was generated."
+            >
               Export report
             </DemoActionButton>
           </>
@@ -79,10 +83,22 @@ export default function FinanceReportsPage() {
 
       <section className="grid gap-4 lg:grid-cols-2">
         <ChartCard title="Aged receivables" description="Customer balances by ageing bucket.">
-          <ErpBarChart data={receivablesAgeing} xKey="bucket" money series={[{ key: "amount", label: "Balance" }]} height={250} />
+          <ErpBarChart
+            data={receivablesAgeing}
+            xKey="bucket"
+            money
+            series={[{ key: "amount", label: "Balance" }]}
+            height={250}
+          />
         </ChartCard>
         <ChartCard title="Aged payables" description="Supplier balances by ageing bucket.">
-          <ErpBarChart data={payablesAgeing} xKey="bucket" money series={[{ key: "amount", label: "Balance" }]} height={250} />
+          <ErpBarChart
+            data={payablesAgeing}
+            xKey="bucket"
+            money
+            series={[{ key: "amount", label: "Balance" }]}
+            height={250}
+          />
         </ChartCard>
       </section>
 
@@ -101,7 +117,9 @@ export default function FinanceReportsPage() {
           />
         </ChartCard>
         <ChartCard title="Expense mix" description="Operating expense categories.">
-          <ErpPieChart data={expenseBreakdown.slice(0, 6).map((entry) => ({ name: entry.category, value: entry.amount }))} />
+          <ErpPieChart
+            data={expenseBreakdown.slice(0, 6).map((entry) => ({ name: entry.category, value: entry.amount }))}
+          />
         </ChartCard>
       </section>
 
@@ -133,7 +151,9 @@ export default function FinanceReportsPage() {
                     <TableCell>
                       <StatusBadge status={invoice.status} />
                     </TableCell>
-                    <TableCell className="text-right tabular-nums">{formatMoney(invoice.balanceDue, invoice.currency)}</TableCell>
+                    <TableCell className="text-right tabular-nums">
+                      {formatMoney(invoice.balanceDue, invoice.currency)}
+                    </TableCell>
                   </TableRow>
                 ))}
             </TableBody>
@@ -143,8 +163,9 @@ export default function FinanceReportsPage() {
 
       <SectionCard title="Cash position" description={`Closing cash for ${cashFlow.period}.`}>
         <p className="text-muted-foreground text-sm">
-          Opening cash of {formatMoney(cashFlow.openingCash)} moved across {formatNumber(cashFlow.operating.length + cashFlow.investing.length + cashFlow.financing.length)}{" "}
-          reported activities during the period. Open the cash flow statement for the full reconciliation.
+          Opening cash of {formatMoney(cashFlow.openingCash)} moved across{" "}
+          {formatNumber(cashFlow.operating.length + cashFlow.investing.length + cashFlow.financing.length)} reported
+          activities during the period. Open the cash flow statement for the full reconciliation.
         </p>
       </SectionCard>
     </div>

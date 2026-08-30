@@ -24,7 +24,11 @@ export default function SalesReportsPage() {
         actions={
           <>
             <PrintButton label="Print report" />
-            <DemoActionButton size="sm" message="Export prepared for demonstration." description="A sales pack preview was generated in the interface.">
+            <DemoActionButton
+              size="sm"
+              message="Export prepared for demonstration."
+              description="A sales pack preview was generated in the interface."
+            >
               Export report
             </DemoActionButton>
           </>
@@ -110,7 +114,11 @@ export default function SalesReportsPage() {
                 {topCustomers.map((customer) => (
                   <TableRow key={customer.id}>
                     <TableCell>
-                      <Link prefetch={false} href={`/customers/${customer.id}`} className="text-primary hover:underline">
+                      <Link
+                        prefetch={false}
+                        href={`/customers/${customer.id}`}
+                        className="text-primary hover:underline"
+                      >
                         {customer.tradingName}
                       </Link>
                     </TableCell>
