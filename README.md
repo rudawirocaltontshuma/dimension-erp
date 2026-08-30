@@ -1,24 +1,23 @@
 # Enterprise ERP
 
-A frontend-only demonstration of an Enterprise Resource Planning platform, built as a portfolio project to show what a
-production-grade ERP frontend for an enterprise company could look like — the operational spine of a real ERP system
-(selling, buying, storing, moving, employing, delivering, reporting) across 70+ fully populated screens.
+A production-grade Enterprise Resource Planning frontend, covering the operational spine of a real ERP system —
+selling, buying, storing, moving, employing, delivering and reporting — across 70+ fully populated screens. Built with
+Next.js, TypeScript, Tailwind CSS and shadcn/ui as a solid, reusable foundation other developers can build on.
 
-> This project is a frontend-only enterprise ERP demonstration created for portfolio purposes. It uses fictional mock data and does not connect to a production database, authentication provider, financial service, banking service, payment provider or external business system.
+> The current build ships as a frontend-only demonstration: every screen is complete and interactive, but data is generated locally and no backend is wired up yet. See [Connecting a backend](#connecting-a-backend) below.
 
 ---
 
-## Purpose
+## What this is
 
-Built to demonstrate advanced frontend engineering:
+A full enterprise application shell and module set, ready to wire up to real data:
 
-- Structuring a large, multi-module enterprise application.
-- A reusable component system that keeps 70+ screens consistent.
-- Modelling realistic business data with precise TypeScript types.
-- Enterprise UX patterns — dense data tables, detail workspaces, dashboards, document views and configuration
-  screens — usable from 320px to ultrawide, in light and dark themes.
-
-It is **not** a production system. Nothing is persisted, no transactions are processed, and every record is fictional.
+- A large, multi-module enterprise application already structured into clear domains (Sales, Procurement, Inventory,
+  Finance, HR, Projects, Logistics, Reporting, Administration).
+- A reusable component system that keeps 70+ screens consistent — data tables, dashboards, detail workspaces,
+  document views and configuration screens.
+- Domain models expressed as precise TypeScript types, ready to be backed by a real API or database.
+- Enterprise UX patterns that work from 320px to ultrawide, in light and dark themes.
 
 ---
 
@@ -111,17 +110,34 @@ confirm dialog), `demo-form-dialog` and `states` (empty, error, skeletons).
 
 ## Mock data approach
 
-All data lives in `src/data/erp/*.ts` and is generated at module load from **seeded pseudo-random generators**
-(`src/data/erp/random.ts`), so the dataset stays:
+Every screen currently renders from data in `src/data/erp/*.ts`, generated at module load from **seeded
+pseudo-random generators** (`src/data/erp/random.ts`), so the dataset stays:
 
 - **Deterministic** — server and client renders always agree, so there are no hydration mismatches.
-- **Believable** — curated pools of names, locations, product categories and supplier names produce realistic,
+- **Realistic** — curated pools of names, locations, product categories and supplier names produce believable,
   non-round values, primarily in ZAR (`R 1,284,500.00`) with some USD, EUR and GBP examples.
 - **Substantial** — 44 customers, 65 products, 92 orders, 62 invoices, 38 quotes, 34 suppliers, 48 purchase orders,
   150+ inventory records, 120 stock movements, 46 employees, 22 projects, 86 tasks, 64 shipments, 148 transactions and
   18 notifications, with varied statuses throughout.
 
-Dates are anchored to a fixed demonstration "today" (30 June 2026) so ageing, timelines and trends stay coherent.
+Dates are anchored to a fixed reference "today" (30 June 2026) so ageing, timelines and trends stay coherent. This
+gives every module a realistic dataset to develop against from day one, without needing a backend running first.
+
+---
+
+## Connecting a backend
+
+The data layer is deliberately isolated so it's straightforward to swap out:
+
+1. Each module's page reads from a single data module in `src/data/erp/` (e.g. `orders.ts`, `customers.ts`). Replace
+   the exported arrays/functions with calls to your API, database client or ORM of choice.
+2. The domain types in `src/types/erp.ts` describe the shape every screen expects — implement your backend against
+   them, or adjust them to match your schema and let TypeScript surface every call site that needs updating.
+3. Actions currently shown as toast-only feedback ("Save Demo", export, approve, etc., in
+   `src/components/erp/demo-actions.tsx` and `demo-form-dialog.tsx`) are the natural places to wire in real mutations
+   — server actions, API calls or a client-side data layer such as TanStack Query.
+4. Authentication, authorization and multi-tenant company scoping (the company switcher) are not implemented and
+   will need to be added for production use.
 
 ---
 
@@ -155,9 +171,14 @@ npm run format     # Format with Biome
 
 ---
 
-## Portfolio disclaimer
+## Current state
 
-This project is a frontend-only enterprise ERP demonstration created for portfolio purposes. It uses fictional mock data and does not connect to a production database, authentication provider, financial service, banking service, payment provider or external business system.
+Out of the box, this is a frontend-only build: every screen is complete and interactive, but all data is fictional
+and generated locally, and no backend, database, authentication provider, financial service, banking service or
+payment provider is connected. All companies, people, customers, suppliers, employees, documents and financial
+figures shown are fictional. Buttons that save, approve, export or send currently display interface feedback only —
+see [Connecting a backend](#connecting-a-backend) for how to make them real.
 
-All companies, people, customers, suppliers, employees, documents and financial figures shown are fictional. Buttons
-that save, approve, export or send display interface feedback only — no data is stored, transmitted or processed.
+## License
+
+MIT — see [LICENSE](./LICENSE).

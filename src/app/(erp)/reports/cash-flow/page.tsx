@@ -135,7 +135,7 @@ export default function CashFlowPage() {
       </SectionCard>
 
       <p className="text-muted-foreground text-xs">
-        Cash movements shown here are fictional and prepared for a portfolio demonstration only.
+        Cash movements shown here are fictional and prepared for demonstration purposes only.
       </p>
     </div>
   );

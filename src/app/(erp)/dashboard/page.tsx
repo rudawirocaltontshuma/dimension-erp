@@ -495,7 +495,7 @@ export default function DashboardPage() {
         <div className="flex items-start gap-3">
           <AlertTriangle aria-hidden className="mt-0.5 size-5 shrink-0 text-amber-600 dark:text-amber-400" />
           <div className="space-y-1">
-            <p className="font-medium text-sm">Portfolio demonstration</p>
+            <p className="font-medium text-sm">Demo data notice</p>
             <p className="text-muted-foreground text-sm">
               Enterprise ERP is a frontend-only demonstration. Every figure on this dashboard is fictional mock data
               held in local TypeScript files — no database, authentication provider or external business system is

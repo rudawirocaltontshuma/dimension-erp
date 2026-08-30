@@ -10,6 +10,6 @@ export const APP_CONFIG = {
   meta: {
     title: "Enterprise ERP — Enterprise Resource Planning Platform",
     description:
-      "Enterprise ERP is a frontend-only enterprise resource planning platform demonstration built with Next.js, TypeScript, Tailwind CSS and shadcn/ui. It uses fictional mock data for portfolio purposes.",
+      "Enterprise ERP is a frontend-only enterprise resource planning platform demonstration built with Next.js, TypeScript, Tailwind CSS and shadcn/ui. It uses fictional mock data for demonstration purposes.",
   },
 };

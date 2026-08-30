@@ -150,7 +150,8 @@ export default function BalanceSheetPage() {
       </SectionCard>
 
       <p className="text-muted-foreground text-xs">
-        Prepared from fictional demonstration data for portfolio purposes. It is not an audited or statutory statement.
+        Prepared from fictional demonstration data for demonstration purposes. It is not an audited or statutory
+        statement.
       </p>
     </div>
   );
