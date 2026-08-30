@@ -167,7 +167,7 @@ export default function PlatformOverviewPage() {
     <div className="space-y-6">
       <PageHeader
         title="Platform Overview"
-        description={`${COMPANY.name} — ${COMPANY.subtitle}. A frontend-only enterprise resource planning demonstration built for portfolio purposes.`}
+        description={`${COMPANY.name} — ${COMPANY.subtitle}. A frontend-only enterprise resource planning platform demonstration built with fictional data.`}
         breadcrumbs={[{ label: "Overview", href: "/dashboard" }, { label: "Platform Overview" }]}
         meta={
           <div className="pt-1">
@@ -279,11 +279,11 @@ export default function PlatformOverviewPage() {
         </SectionCard>
       </div>
 
-      <SectionCard title="Portfolio disclaimer">
+      <SectionCard title="Demo data disclaimer">
         <p className="text-muted-foreground text-sm">
-          This project is a frontend-only enterprise ERP demonstration created for portfolio purposes. It uses fictional
-          mock data and does not connect to a production database, authentication provider, financial service, banking
-          service, payment provider or external business system.
+          This project is a frontend-only enterprise ERP demonstration. It uses fictional mock data and does not connect
+          to a production database, authentication provider, financial service, banking service, payment provider or
+          external business system.
         </p>
       </SectionCard>
     </div>

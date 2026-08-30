@@ -171,8 +171,8 @@ export function UserMenu() {
           </DialogHeader>
           <div className="space-y-3 text-muted-foreground text-sm">
             <p>
-              Enterprise ERP is a frontend-only enterprise resource planning demonstration created for portfolio
-              purposes. Every record shown is fictional mock data held in local TypeScript files.
+              Enterprise ERP is a frontend-only enterprise resource planning demonstration. Every record shown is
+              fictional mock data held in local TypeScript files.
             </p>
             <p>
               The platform does not connect to a production database, authentication provider, financial service,

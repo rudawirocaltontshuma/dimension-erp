@@ -161,8 +161,8 @@ export default async function InvoiceDetailPage({ params }: { params: Promise<{ 
             <p className="font-medium text-sm">Notes</p>
             <p className="text-muted-foreground text-sm">{invoice.notes}</p>
             <p className="text-muted-foreground text-xs">
-              Banking details are intentionally omitted — this document is a portfolio demonstration and no payment can
-              be made against it.
+              Banking details are intentionally omitted — this document is a demonstration and no payment can be made
+              against it.
             </p>
           </div>
         </CardContent>

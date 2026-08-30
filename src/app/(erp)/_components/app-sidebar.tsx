@@ -86,7 +86,7 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               Demo mode
             </p>
             <p className="mt-0.5 text-muted-foreground text-xs">
-              Frontend portfolio demonstration with fictional data. No live systems are connected.
+              Frontend-only demonstration with fictional data. No live systems are connected.
             </p>
           </div>
         )}
