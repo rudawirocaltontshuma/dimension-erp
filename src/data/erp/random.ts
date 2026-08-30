@@ -1,7 +1,7 @@
 /**
  * Deterministic pseudo-random helpers.
  *
- * All NEXORA ERP demo data is generated from fixed seeds so that the server render
+ * All Enterprise ERP demo data is generated from fixed seeds so that the server render
  * and the client render always produce identical values (no hydration mismatch)
  * and the demo looks the same on every visit.
  */

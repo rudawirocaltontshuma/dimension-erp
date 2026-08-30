@@ -40,7 +40,7 @@ export default function ProductsPage() {
     <div className="space-y-6">
       <PageHeader
         title="Products"
-        description="The full Nexora catalogue across power tools, electrical, automation, safety, packaging and materials handling."
+        description="The full Enterprise catalogue across power tools, electrical, automation, safety, packaging and materials handling."
         breadcrumbs={[{ label: "Operations", href: "/dashboard" }, { label: "Products" }]}
         actions={
           <DemoFormDialog

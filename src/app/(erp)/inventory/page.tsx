@@ -38,7 +38,7 @@ export default function InventoryPage() {
     <div className="space-y-6">
       <PageHeader
         title="Inventory Overview"
-        description="Stock position, valuation and replenishment exposure across every Nexora distribution point."
+        description="Stock position, valuation and replenishment exposure across every Enterprise distribution point."
         breadcrumbs={[{ label: "Inventory", href: "/inventory" }, { label: "Overview" }]}
         actions={
           <Button asChild variant="outline" size="sm">

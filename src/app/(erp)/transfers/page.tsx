@@ -38,7 +38,7 @@ export default function TransfersPage() {
     <div className="space-y-6">
       <PageHeader
         title="Stock Transfers"
-        description="Inter-warehouse replenishment requests moving stock between Nexora distribution points."
+        description="Inter-warehouse replenishment requests moving stock between Enterprise distribution points."
         breadcrumbs={[{ label: "Inventory", href: "/inventory" }, { label: "Transfers" }]}
         actions={
           <DemoFormDialog

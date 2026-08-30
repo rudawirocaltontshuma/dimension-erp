@@ -27,7 +27,7 @@ import { transactions } from "@/data/erp/finance";
 import { employees } from "@/data/erp/hr";
 import { inventoryRecords } from "@/data/erp/inventory";
 import { shipments } from "@/data/erp/logistics";
-import { NEXORA } from "@/data/erp/organisation";
+import { COMPANY } from "@/data/erp/organisation";
 import { purchaseOrders } from "@/data/erp/procurement";
 import { products } from "@/data/erp/products";
 import { projects } from "@/data/erp/projects";
@@ -167,7 +167,7 @@ export default function PlatformOverviewPage() {
     <div className="space-y-6">
       <PageHeader
         title="Platform Overview"
-        description={`${NEXORA.name} — ${NEXORA.subtitle}. A frontend-only enterprise resource planning demonstration built for portfolio purposes.`}
+        description={`${COMPANY.name} — ${COMPANY.subtitle}. A frontend-only enterprise resource planning demonstration built for portfolio purposes.`}
         breadcrumbs={[{ label: "Overview", href: "/dashboard" }, { label: "Platform Overview" }]}
         meta={
           <div className="pt-1">
@@ -185,12 +185,12 @@ export default function PlatformOverviewPage() {
       />
 
       <SectionCard
-        title="What NEXORA ERP is"
+        title="What Enterprise ERP is"
         description="A demonstration of enterprise frontend engineering, not a production system."
       >
         <div className="space-y-3 text-sm">
           <p>
-            NEXORA ERP presents the interface of a mid-sized South African distribution and manufacturing group. It
+            Enterprise ERP presents the interface of a mid-sized South African distribution and manufacturing group. It
             covers the operational spine of an ERP platform: selling, buying, storing, moving, employing, delivering and
             reporting — each as a fully populated set of screens.
           </p>

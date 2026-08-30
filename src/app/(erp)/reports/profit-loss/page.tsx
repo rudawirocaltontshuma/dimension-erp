@@ -7,7 +7,7 @@ import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { profitAndLoss } from "@/data/erp/finance";
-import { NEXORA } from "@/data/erp/organisation";
+import { COMPANY } from "@/data/erp/organisation";
 import { formatMoney, formatPercent } from "@/lib/erp/format";
 import { cn } from "@/lib/utils";
 
@@ -39,7 +39,7 @@ export default function ProfitLossPage() {
     <div className="space-y-6">
       <PageHeader
         title="Profit & Loss Statement"
-        description={`${NEXORA.legalName} · ${profitAndLoss.period}`}
+        description={`${COMPANY.legalName} · ${profitAndLoss.period}`}
         breadcrumbs={[
           { label: "Reports", href: "/reports" },
           { label: "Finance", href: "/reports/finance" },

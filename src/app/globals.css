@@ -283,7 +283,7 @@ html {
   }
 }
 
-/* NEXORA ERP print styling: hide application chrome and print documents on a clean page. */
+/* Enterprise ERP print styling: hide application chrome and print documents on a clean page. */
 @media print {
   [data-slot="sidebar-container"],
   [data-slot="sidebar"],

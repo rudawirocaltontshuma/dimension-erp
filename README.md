@@ -1,7 +1,7 @@
-# NEXORA ERP — Enterprise Resource Planning Platform
+# Enterprise ERP — Enterprise Resource Planning Platform
 
-NEXORA ERP is a complete, high-fidelity **frontend demonstration** of an enterprise resource planning platform for a
-fictional South African distribution and manufacturing group, *Nexora Holdings*. It covers the operational spine of a
+Enterprise ERP is a complete, high-fidelity **frontend demonstration** of an enterprise resource planning platform for a
+fictional South African distribution and manufacturing group, *Enterprise Holdings*. It covers the operational spine of a
 real ERP system — selling, buying, storing, moving, employing, delivering and reporting — across more than seventy
 fully populated screens.
 
@@ -26,7 +26,7 @@ It is **not** a production system. Nothing is persisted, no transactions are pro
 ## Feature highlights
 
 - **Application shell** — collapsible sidebar with grouped navigation and tooltips when collapsed, sticky header,
-  company switcher (Nexora Holdings / Distribution / Manufacturing), notification centre, demo profile menu, theme
+  company switcher (Enterprise Holdings / Distribution / Manufacturing), notification centre, demo profile menu, theme
   switcher and a persistent DEMO MODE badge.
 - **Global search and command palette** — `Cmd/Ctrl + K` opens a categorised search across customers, products,
   orders, invoices, suppliers, purchase orders, employees, projects, shipments and warehouses, plus quick navigation
@@ -171,6 +171,6 @@ npm run format     # Format with Biome
 
 This project is a frontend-only enterprise ERP demonstration created for portfolio purposes. It uses fictional mock data and does not connect to a production database, authentication provider, financial service, banking service, payment provider or external business system.
 
-All companies, people, customers, suppliers, employees, documents and financial figures shown in NEXORA ERP are
+All companies, people, customers, suppliers, employees, documents and financial figures shown in Enterprise ERP are
 fictional. Buttons that save, approve, export or send display interface feedback only — no data is stored, transmitted
 or processed.
