@@ -18,7 +18,7 @@ import {
   SidebarMenuItem,
   useSidebar,
 } from "@/components/ui/sidebar";
-import { NEXORA } from "@/data/erp/organisation";
+import { COMPANY } from "@/data/erp/organisation";
 import { erpNavigation } from "@/navigation/erp-navigation";
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
@@ -33,14 +33,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
-            <SidebarMenuButton asChild size="lg" tooltip={NEXORA.name}>
+            <SidebarMenuButton asChild size="lg" tooltip={COMPANY.name}>
               <Link prefetch={false} href="/dashboard">
                 <span className="flex size-8 shrink-0 items-center justify-center rounded-md bg-primary text-primary-foreground">
                   <Hexagon className="size-4" />
                 </span>
                 <span className="grid min-w-0 leading-tight">
-                  <span className="truncate font-semibold text-sm">{NEXORA.name}</span>
-                  <span className="truncate text-muted-foreground text-xs">{NEXORA.subtitle}</span>
+                  <span className="truncate font-semibold text-sm">{COMPANY.name}</span>
+                  <span className="truncate text-muted-foreground text-xs">{COMPANY.subtitle}</span>
                 </span>
               </Link>
             </SidebarMenuButton>

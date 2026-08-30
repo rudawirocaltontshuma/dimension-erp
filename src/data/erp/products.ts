@@ -14,7 +14,7 @@ interface ProductSeed {
 
 const CATALOGUE: ProductSeed[] = [
   {
-    name: "Nexora Industrial Drill 850W",
+    name: "Enterprise Industrial Drill 850W",
     category: "Power Tools",
     subCategory: "Drilling",
     unit: "Each",
@@ -22,7 +22,7 @@ const CATALOGUE: ProductSeed[] = [
     high: 2400,
   },
   {
-    name: "Nexora Angle Grinder 900W",
+    name: "Enterprise Angle Grinder 900W",
     category: "Power Tools",
     subCategory: "Cutting",
     unit: "Each",
@@ -30,7 +30,7 @@ const CATALOGUE: ProductSeed[] = [
     high: 1980,
   },
   {
-    name: "Nexora Cordless Impact Driver",
+    name: "Enterprise Cordless Impact Driver",
     category: "Power Tools",
     subCategory: "Fastening",
     unit: "Each",
@@ -38,7 +38,7 @@ const CATALOGUE: ProductSeed[] = [
     high: 3450,
   },
   {
-    name: "Nexora Rotary Hammer 26mm",
+    name: "Enterprise Rotary Hammer 26mm",
     category: "Power Tools",
     subCategory: "Drilling",
     unit: "Each",
@@ -46,7 +46,7 @@ const CATALOGUE: ProductSeed[] = [
     high: 5200,
   },
   {
-    name: "Nexora Circular Saw 185mm",
+    name: "Enterprise Circular Saw 185mm",
     category: "Power Tools",
     subCategory: "Cutting",
     unit: "Each",
@@ -54,7 +54,7 @@ const CATALOGUE: ProductSeed[] = [
     high: 2890,
   },
   {
-    name: "Nexora Bench Grinder 200mm",
+    name: "Enterprise Bench Grinder 200mm",
     category: "Power Tools",
     subCategory: "Workshop",
     unit: "Each",
@@ -528,10 +528,10 @@ function buildProducts(): Product[] {
       id: `PRD-${padNumber(index + 1, 4)}`,
       sku: `NX-${seed.category.slice(0, 3).toUpperCase()}-${padNumber(index + 1, 4)}`,
       name: seed.name,
-      description: `${seed.name} supplied through the Nexora ${seed.category.toLowerCase()} range. Rated for continuous industrial duty and stocked across all regional distribution centres.`,
+      description: `${seed.name} supplied through the Enterprise ${seed.category.toLowerCase()} range. Rated for continuous industrial duty and stocked across all regional distribution centres.`,
       category: seed.category,
       subCategory: seed.subCategory,
-      brand: index % 3 === 0 ? "Nexora" : pick(rng, ["Ferrolink", "Trident", "Vantage", "Lumen", "Pinnacle"]),
+      brand: index % 3 === 0 ? "Enterprise" : pick(rng, ["Ferrolink", "Trident", "Vantage", "Lumen", "Pinnacle"]),
       supplierId: supplier.id,
       supplierName: supplier.name,
       unit: seed.unit,

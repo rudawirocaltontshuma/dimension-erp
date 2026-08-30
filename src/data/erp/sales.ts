@@ -388,7 +388,11 @@ function buildPayments(): Payment[] {
         ["Failed", 6],
         ["Reversed", 6],
       ] as const),
-      account: pick(rng, ["Nexora Current Account", "Nexora Collections Account", "Nexora Payables Account"]),
+      account: pick(rng, [
+        "Enterprise Current Account",
+        "Enterprise Collections Account",
+        "Enterprise Payables Account",
+      ]),
     };
   });
 }

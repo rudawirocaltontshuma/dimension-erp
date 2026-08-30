@@ -23,7 +23,7 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { Kbd } from "@/components/ui/kbd";
-import { demoUser, NEXORA } from "@/data/erp/organisation";
+import { COMPANY, demoUser } from "@/data/erp/organisation";
 import { usePreferencesStore } from "@/stores/preferences/preferences-provider";
 
 const SHORTCUTS = [
@@ -166,13 +166,13 @@ export function UserMenu() {
           <DialogHeader>
             <DialogTitle>About this demonstration</DialogTitle>
             <DialogDescription>
-              {NEXORA.name} — {NEXORA.subtitle}
+              {COMPANY.name} — {COMPANY.subtitle}
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-3 text-muted-foreground text-sm">
             <p>
-              NEXORA ERP is a frontend-only enterprise resource planning demonstration created for portfolio purposes.
-              Every record shown is fictional mock data held in local TypeScript files.
+              Enterprise ERP is a frontend-only enterprise resource planning demonstration created for portfolio
+              purposes. Every record shown is fictional mock data held in local TypeScript files.
             </p>
             <p>
               The platform does not connect to a production database, authentication provider, financial service,

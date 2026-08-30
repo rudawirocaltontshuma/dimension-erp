@@ -22,7 +22,7 @@ export default function WarehousesPage() {
     <div className="space-y-6">
       <PageHeader
         title="Warehouses"
-        description="Capacity, utilisation and throughput across the Nexora distribution network."
+        description="Capacity, utilisation and throughput across the Enterprise distribution network."
         breadcrumbs={[{ label: "Operations", href: "/dashboard" }, { label: "Warehouses" }]}
       />
 

@@ -4,7 +4,7 @@ import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { balanceSheet } from "@/data/erp/finance";
-import { NEXORA } from "@/data/erp/organisation";
+import { COMPANY } from "@/data/erp/organisation";
 import { formatMoney } from "@/lib/erp/format";
 
 interface Line {
@@ -62,7 +62,7 @@ export default function BalanceSheetPage() {
     <div className="space-y-6">
       <PageHeader
         title="Balance Sheet"
-        description={`${NEXORA.legalName} · statement of financial position as at ${balanceSheet.asAt}`}
+        description={`${COMPANY.legalName} · statement of financial position as at ${balanceSheet.asAt}`}
         breadcrumbs={[
           { label: "Reports", href: "/reports" },
           { label: "Finance", href: "/reports/finance" },

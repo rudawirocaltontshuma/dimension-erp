@@ -10,7 +10,7 @@ const SYMBOLS: Record<CurrencyCode, string> = {
 const decimalFormatter = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
 const compactNumberFormatter = new Intl.NumberFormat("en-US", { maximumFractionDigits: 0 });
 
-/** Formats money in the NEXORA house style, e.g. `R 1,284,500.00`. */
+/** Formats money in the Enterprise ERP house style, e.g. `R 1,284,500.00`. */
 export function formatMoney(amount: number, currency: CurrencyCode = "ZAR"): string {
   const sign = amount < 0 ? "-" : "";
   return `${sign}${SYMBOLS[currency]} ${decimalFormatter.format(Math.abs(amount))}`;

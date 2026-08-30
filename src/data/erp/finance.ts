@@ -16,7 +16,7 @@ export const accounts: Account[] = [
   {
     id: "acc-1010",
     code: "1010",
-    name: "Bank — Nexora Current Account",
+    name: "Bank — Enterprise Current Account",
     type: "Asset",
     subType: "Cash & Equivalents",
     balance: 18942605.18,
@@ -631,7 +631,7 @@ export const profitAndLoss = {
 export const balanceSheet = {
   asAt: "30 June 2026",
   currentAssets: [
-    { label: "Bank — Nexora Current Account", amount: 18942605.18 },
+    { label: "Bank — Enterprise Current Account", amount: 18942605.18 },
     { label: "Bank — Collections Account", amount: 6284190.44 },
     { label: "Petty Cash", amount: 84250 },
     { label: "Accounts Receivable", amount: 24618720.9 },

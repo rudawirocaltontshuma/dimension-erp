@@ -10,19 +10,19 @@ import { Button } from "@/components/ui/button";
 import { Field, FieldDescription, FieldGroup, FieldLabel } from "@/components/ui/field";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { companies, NEXORA } from "@/data/erp/organisation";
+import { COMPANY, companies } from "@/data/erp/organisation";
 
 export default function CompanySettingsPage() {
   const [form, setForm] = useState({
-    legalName: NEXORA.legalName,
-    tradingName: "Nexora Group",
-    registration: NEXORA.registration,
-    vat: NEXORA.vatNumber,
-    email: NEXORA.email,
-    phone: NEXORA.phone,
-    website: NEXORA.website,
-    fiscalYear: NEXORA.fiscalYearStart,
-    address: `${NEXORA.headOffice.line1}\n${NEXORA.headOffice.line2}\n${NEXORA.headOffice.city}, ${NEXORA.headOffice.province} ${NEXORA.headOffice.postalCode}\n${NEXORA.headOffice.country}`,
+    legalName: COMPANY.legalName,
+    tradingName: "Enterprise Group",
+    registration: COMPANY.registration,
+    vat: COMPANY.vatNumber,
+    email: COMPANY.email,
+    phone: COMPANY.phone,
+    website: COMPANY.website,
+    fiscalYear: COMPANY.fiscalYearStart,
+    address: `${COMPANY.headOffice.line1}\n${COMPANY.headOffice.line2}\n${COMPANY.headOffice.city}, ${COMPANY.headOffice.province} ${COMPANY.headOffice.postalCode}\n${COMPANY.headOffice.country}`,
   });
 
   const update = (key: keyof typeof form, value: string) => setForm((current) => ({ ...current, [key]: value }));

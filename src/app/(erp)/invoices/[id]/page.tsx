@@ -9,7 +9,7 @@ import { StatusBadge } from "@/components/erp/status-badge";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { NEXORA } from "@/data/erp/organisation";
+import { COMPANY } from "@/data/erp/organisation";
 import { invoices } from "@/data/erp/sales";
 import { formatDate, formatMoney, formatNumber, formatPercent } from "@/lib/erp/format";
 
@@ -63,14 +63,14 @@ export default async function InvoiceDetailPage({ params }: { params: Promise<{ 
         <CardContent className="space-y-6 p-6 md:p-8">
           <div className="flex flex-col gap-6 sm:flex-row sm:items-start sm:justify-between">
             <div className="space-y-1">
-              <p className="font-semibold text-lg">{NEXORA.legalName}</p>
-              <p className="text-muted-foreground text-sm">{NEXORA.headOffice.line1}</p>
-              <p className="text-muted-foreground text-sm">{NEXORA.headOffice.line2}</p>
+              <p className="font-semibold text-lg">{COMPANY.legalName}</p>
+              <p className="text-muted-foreground text-sm">{COMPANY.headOffice.line1}</p>
+              <p className="text-muted-foreground text-sm">{COMPANY.headOffice.line2}</p>
               <p className="text-muted-foreground text-sm">
-                {NEXORA.headOffice.city}, {NEXORA.headOffice.province} {NEXORA.headOffice.postalCode}
+                {COMPANY.headOffice.city}, {COMPANY.headOffice.province} {COMPANY.headOffice.postalCode}
               </p>
               <p className="text-muted-foreground text-sm">
-                VAT {NEXORA.vatNumber} · Reg {NEXORA.registration}
+                VAT {COMPANY.vatNumber} · Reg {COMPANY.registration}
               </p>
             </div>
             <div className="space-y-1 sm:text-right">

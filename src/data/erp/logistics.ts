@@ -24,7 +24,7 @@ import {
 import { orders } from "./sales";
 
 const CARRIERS = [
-  "Nexora Fleet",
+  "Enterprise Fleet",
   "Skynet Freight",
   "Cape Express Logistics",
   "Highveld Couriers",

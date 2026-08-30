@@ -5,7 +5,7 @@ import { KpiCard } from "@/components/erp/kpi-card";
 import { PageHeader } from "@/components/erp/page-header";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { cashFlow } from "@/data/erp/finance";
-import { NEXORA } from "@/data/erp/organisation";
+import { COMPANY } from "@/data/erp/organisation";
 import { formatMoney } from "@/lib/erp/format";
 import { cn } from "@/lib/utils";
 
@@ -69,7 +69,7 @@ export default function CashFlowPage() {
     <div className="space-y-6">
       <PageHeader
         title="Cash Flow Statement"
-        description={`${NEXORA.legalName} · ${cashFlow.period}`}
+        description={`${COMPANY.legalName} · ${cashFlow.period}`}
         breadcrumbs={[
           { label: "Reports", href: "/reports" },
           { label: "Finance", href: "/reports/finance" },
