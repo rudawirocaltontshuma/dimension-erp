@@ -54,8 +54,8 @@ import { projectSummary, projects } from "@/data/erp/projects";
 import { formatDate, formatMoney, formatMoneyCompact, formatNumber, formatPercent } from "@/lib/erp/format";
 
 export const metadata: Metadata = {
-  title: "Enterprise Overview — Enterprise ERP",
-  description: "Group-wide operational, commercial and financial overview for the Enterprise ERP demonstration.",
+  title: "Enterprise Overview — Dimension ERP",
+  description: "Group-wide operational, commercial and financial overview for the Dimension ERP demonstration.",
 };
 
 export default function DashboardPage() {
@@ -67,8 +67,8 @@ export default function DashboardPage() {
     <div className="space-y-6">
       <PageHeader
         title="Enterprise Overview"
-        description="Consolidated performance across sales, procurement, inventory, finance, people and logistics for Enterprise Holdings — 30 June 2026."
-        breadcrumbs={[{ label: "Enterprise ERP", href: "/dashboard" }, { label: "Dashboard" }]}
+        description="Consolidated performance across sales, procurement, inventory, finance, people and logistics for Dimension Holdings — 30 June 2026."
+        breadcrumbs={[{ label: "Dimension ERP", href: "/dashboard" }, { label: "Dashboard" }]}
         actions={
           <>
             <DemoActionButton
@@ -497,9 +497,8 @@ export default function DashboardPage() {
           <div className="space-y-1">
             <p className="font-medium text-sm">Demo data notice</p>
             <p className="text-muted-foreground text-sm">
-              Enterprise ERP is a frontend-only demonstration. Every figure on this dashboard is fictional mock data
-              held in local TypeScript files — no database, authentication provider or external business system is
-              connected.
+              Dimension ERP is a frontend-only demonstration. Every figure on this dashboard is fictional mock data held
+              in local TypeScript files — no database, authentication provider or external business system is connected.
             </p>
             <Button asChild variant="outline" size="sm" className="mt-2">
               <Link prefetch={false} href="/platform-overview">

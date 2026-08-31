@@ -1,6 +1,6 @@
-# Contributing to Enterprise ERP
+# Contributing to Dimension ERP
 
-Thanks for your interest in improving **Enterprise ERP**. This guide covers how to set up your environment and
+Thanks for your interest in improving **Dimension ERP**. This guide covers how to set up your environment and
 where to make changes.
 
 ---

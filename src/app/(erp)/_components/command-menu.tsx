@@ -71,7 +71,7 @@ export function CommandMenu() {
         aria-label="Open global search and command menu"
       >
         <Search className="size-4" />
-        <span className="hidden truncate sm:inline">Search Enterprise ERP…</span>
+        <span className="hidden truncate sm:inline">Search Dimension ERP…</span>
         <span className="sm:hidden">Search</span>
         <Kbd className="ml-auto hidden md:inline-flex">⌘K</Kbd>
       </Button>

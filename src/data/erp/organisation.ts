@@ -1,18 +1,18 @@
 import type { Address, CurrencyCode, Warehouse } from "@/types/erp";
 
 export const COMPANY = {
-  name: "Enterprise ERP",
+  name: "Dimension ERP",
   subtitle: "Enterprise Resource Planning Platform",
-  legalName: "Enterprise Holdings (Pty) Ltd",
+  legalName: "Dimension Holdings (Pty) Ltd",
   registration: "2014/118304/07",
   vatNumber: "4820158376",
-  email: "operations@enterprise-demo.co.za",
+  email: "operations@dimension-demo.co.za",
   phone: "+27 11 482 6100",
-  website: "www.enterprise-demo.co.za",
+  website: "www.dimension-demo.co.za",
   baseCurrency: "ZAR" as CurrencyCode,
   fiscalYearStart: "1 March",
   headOffice: {
-    line1: "Enterprise Corporate Park, Block C",
+    line1: "Dimension Corporate Park, Block C",
     line2: "144 Rivonia Road, Sandton",
     city: "Johannesburg",
     province: "Gauteng",
@@ -34,7 +34,7 @@ export interface CompanyEntity {
 export const companies: CompanyEntity[] = [
   {
     id: "co-holdings",
-    name: "Enterprise Holdings",
+    name: "Dimension Holdings",
     description: "Group holding entity covering shared services, finance and corporate governance.",
     registration: "2014/118304/07",
     baseCurrency: "ZAR",
@@ -43,7 +43,7 @@ export const companies: CompanyEntity[] = [
   },
   {
     id: "co-distribution",
-    name: "Enterprise Distribution",
+    name: "Dimension Distribution",
     description: "National distribution and wholesale operation servicing retail and trade customers.",
     registration: "2016/226741/07",
     baseCurrency: "ZAR",
@@ -52,8 +52,8 @@ export const companies: CompanyEntity[] = [
   },
   {
     id: "co-manufacturing",
-    name: "Enterprise Manufacturing",
-    description: "Assembly and light manufacturing division producing the Enterprise branded product range.",
+    name: "Dimension Manufacturing",
+    description: "Assembly and light manufacturing division producing the Dimension branded product range.",
     registration: "2018/304922/07",
     baseCurrency: "ZAR",
     employees: 94,
@@ -64,7 +64,7 @@ export const companies: CompanyEntity[] = [
 export const demoUser = {
   name: "Alex Morgan",
   role: "Enterprise Administrator",
-  email: "alex.morgan@enterprise-demo.co.za",
+  email: "alex.morgan@dimension-demo.co.za",
   initials: "AM",
   location: "Sandton, Johannesburg",
   phone: "+27 82 441 0193",
@@ -257,7 +257,7 @@ export const warehouses: Warehouse[] = [
     lowStockItems: 11,
     status: "Operational",
     address: {
-      line1: "Unit 14, Enterprise Logistics Park",
+      line1: "Unit 14, Dimension Logistics Park",
       line2: "22 Commerce Park Drive, Spartan",
       city: "Kempton Park",
       province: "Gauteng",

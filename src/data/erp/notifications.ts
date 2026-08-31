@@ -106,7 +106,7 @@ export const notifications: AppNotification[] = [
   {
     id: "NTF-011",
     title: "Bank reconciliation complete",
-    description: "Enterprise Current Account reconciled to 29 June 2026 with no unmatched items.",
+    description: "Dimension Current Account reconciled to 29 June 2026 with no unmatched items.",
     category: "Finance",
     tone: "success",
     timestamp: isoDateTime(-30),

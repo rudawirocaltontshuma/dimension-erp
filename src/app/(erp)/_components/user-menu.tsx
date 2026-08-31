@@ -171,7 +171,7 @@ export function UserMenu() {
           </DialogHeader>
           <div className="space-y-3 text-muted-foreground text-sm">
             <p>
-              Enterprise ERP is a frontend-only enterprise resource planning demonstration. Every record shown is
+              Dimension ERP is a frontend-only enterprise resource planning demonstration. Every record shown is
               fictional mock data held in local TypeScript files.
             </p>
             <p>

@@ -27,7 +27,7 @@ export default function ReportCentrePage() {
     <div className="space-y-6">
       <PageHeader
         title="Executive Reports"
-        description="The Enterprise ERP report centre — financial statements, commercial analysis and operational registers."
+        description="The Dimension ERP report centre — financial statements, commercial analysis and operational registers."
         breadcrumbs={[{ label: "Reports", href: "/reports" }, { label: "Report Centre" }]}
         actions={
           <Button

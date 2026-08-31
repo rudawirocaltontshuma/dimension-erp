@@ -389,7 +389,7 @@ function buildPayments(): Payment[] {
         ["Reversed", 6],
       ] as const),
       account: pick(rng, [
-        "Enterprise Current Account",
+        "Dimension Current Account",
         "Enterprise Collections Account",
         "Enterprise Payables Account",
       ]),
