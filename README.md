@@ -1,4 +1,4 @@
-# Enterprise ERP
+# Dimension ERP
 
 A production-grade Enterprise Resource Planning frontend, covering the operational spine of a real ERP system —
 selling, buying, storing, moving, employing, delivering and reporting — across 70+ fully populated screens. Built with

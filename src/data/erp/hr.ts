@@ -182,7 +182,7 @@ function buildEmployees(): Employee[] {
       firstName,
       lastName,
       fullName,
-      email: `${firstName.toLowerCase()}.${lastName.toLowerCase().replace(/[^a-z]/g, "")}@enterprise-demo.co.za`,
+      email: `${firstName.toLowerCase()}.${lastName.toLowerCase().replace(/[^a-z]/g, "")}@dimension-demo.co.za`,
       phone: `+27 ${intBetween(rng, 60, 84)} ${intBetween(rng, 200, 899)} ${padNumber(intBetween(rng, 0, 9999), 4)}`,
       jobTitle: titles[index % titles.length],
       department: department.name,

@@ -185,12 +185,12 @@ export default function PlatformOverviewPage() {
       />
 
       <SectionCard
-        title="What Enterprise ERP is"
+        title="What Dimension ERP is"
         description="A demonstration of enterprise frontend engineering, not a production system."
       >
         <div className="space-y-3 text-sm">
           <p>
-            Enterprise ERP presents the interface of a mid-sized South African distribution and manufacturing group. It
+            Dimension ERP presents the interface of a mid-sized South African distribution and manufacturing group. It
             covers the operational spine of an ERP platform: selling, buying, storing, moving, employing, delivering and
             reporting — each as a fully populated set of screens.
           </p>

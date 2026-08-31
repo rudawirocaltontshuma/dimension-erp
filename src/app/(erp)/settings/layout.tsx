@@ -9,7 +9,7 @@ export default function SettingsLayout({ children }: Readonly<{ children: ReactN
     <div className="space-y-6">
       <PageHeader
         title="Administration"
-        description="Company, structure, financial and system configuration for the Enterprise ERP demonstration."
+        description="Company, structure, financial and system configuration for the Dimension ERP demonstration."
         breadcrumbs={[{ label: "Administration", href: "/settings" }, { label: "Settings" }]}
       />
       <SettingsNav />
